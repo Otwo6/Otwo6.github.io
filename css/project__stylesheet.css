@@ -1,0 +1,69 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: #181818;
+    color: #F5FBEF;
+    font-family: Arial, "Source Sans Pro", Helvetica, Arial, sans-serif;
+    line-height: 1.5
+}
+
+p {
+    font-size: 15px;
+}
+
+h1
+{
+    font-size: 45px;
+    font-weight: bold;
+}
+
+h2
+{
+    font-size: 25px;
+}
+
+a
+{
+    color:#F5FBEF;
+    text-decoration: none;
+}
+
+.project__page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+}
+
+.portfolio__banner {
+    max-width: 950px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.quick__facts {
+    display: flex;
+}
+
+.project__fact {
+    display: grid;
+    text-align: center;
+    line-height: 7.5px;
+}
+
+.portfolio__title {
+    max-width: 960px;
+    text-align: center;
+    font-weight: bold;
+    color: aquamarine;
+}
+
+.section__title {
+    max-width: 960px;
+    text-align: center;
+}
+
+.project__images {
+    display: grid;
+    object-position: left;
+}
