@@ -258,3 +258,7 @@ h1 {
 .video__name {
 	font-size: 18px;
 }
+
+.showcase-item {
+	width: 50%;
+}
