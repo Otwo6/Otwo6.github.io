@@ -91,6 +91,25 @@ a
     line-height: 50px;
 }
 
+.intro__button {
+	background-color: #437a75; /* Background color */
+	margin-left: 5%;
+	width:52.5%;
+    padding: 10px; /* Vertical and horizontal padding */
+    border-radius: 50px; /* Large border radius for pill shape */
+    font-size: 15px;
+	font-weight: 600;
+    text-align: center; /* Center text alignment */
+    display: inline-block; /* Inline-block to fit content */
+    border: 2px solid transparent; /* Border for visual effect */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+	text-decoration: none; /* Remove underline */
+}
+
+.intro__button:hover {
+    background-color: #295551; /* Darker background on hover */
+}
+
 .grid {
     display: flex;
     flex-direction: column;
