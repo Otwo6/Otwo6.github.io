@@ -63,6 +63,15 @@ a
     }
 }
 
+.intro__left {
+    text-align: center;
+}
+
+.intro__see-more {
+    margin-top: 50px;
+    font-size: 1em;
+}
+
 .intro__icon {    
     width:500px;
     height:500px;
@@ -157,10 +166,10 @@ a
 }
 
 .projects__wrap {
-    margin-top: 100px;
+    margin-top: 0px;
     max-width: 1000px;
     position: relative;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 }
 
 .projects__wrap .projects__icon {
