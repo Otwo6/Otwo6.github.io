@@ -70,6 +70,10 @@ a
 .intro__see-more {
     margin-top: 50px;
     font-size: 1em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .intro__icon {    
