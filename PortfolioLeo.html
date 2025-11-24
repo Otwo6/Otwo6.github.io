@@ -1,99 +1,606 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-    
 <head>
-<title>Leo Saves the Swamp | Josh Widby</title>
-<link rel="stylesheet" href="css/project__stylesheet2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leo Saves the Swamp - A Glimpse Behind the Magic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset and Variables (Celestial Dawn Scheme) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+			--primary: #673AB7; /* Sky Blue */
+			--primary-light: #9575CD;
+			--secondary: #FFC107; /* Bubblegum Pink Accent */
+			--text: #311B92; /* Deep Indigo */
+			--text-light: #5a667f; 
+			--bg: #FFFDE7; /* Near White/Cloud */
+			--bg-secondary: #F3E5F5; /* Pale Powder Blue */
+			--shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+			--shadow-deep: 0 15px 30px rgba(0, 0, 0, 0.2);
+			--font-title: 'Playfair Display', serif;
+			--font-body: 'Roboto', sans-serif;
+		}
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Header Navigation */
+        .header {
+            position: sticky; 
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 251, 252, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-light);
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px) scale(1.02);
+            box-shadow: var(--shadow-deep);
+        }
+        
+        /* Navigation links hidden on mobile by default to simplify */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Banner Section */
+        .banner {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            margin-top: 70px;
+            /* UPDATED: Enhanced Dreamy Gradient (Deep Indigo to Sky Blue) */
+            background: linear-gradient(145deg, #1A237E 0%, #42A5F5 100%);
+            overflow: hidden;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            transition: opacity 0.5s ease;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(66, 165, 245, 0.3), rgba(26, 35, 126, 0.7));
+        }
+
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2rem;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-logo {
+            max-width: 250px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 128, 171, 0.5));
+        }
+
+        .banner-content h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .release-info {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Reusing visionary button styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem; 
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 128, 171, 0.4);
+        }
+
+        .btn-secondary {
+            background: none;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Project Details Section - MODIFIED FOR CENTERING */
+        .project-details {
+            padding: 4rem 0;
+            /* Centering the section content */
+            display: flex; 
+            justify-content: center;
+        }
+
+        /* Inner container for the two columns */
+        .project-details-content { 
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+            max-width: 1200px; /* Limit the width of the content grid */
+            width: 100%;
+        }
+
+        /* Poster Container - MODIFIED TO REMOVE STICKY POSITION */
+        .poster-container {
+            /* position: sticky; <-- REMOVED */
+            top: 100px;
+            height: fit-content;
+        }
+
+        .poster-image {
+            width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-deep);
+            border: 5px solid var(--primary-light);
+            transition: transform 0.3s ease;
+        }
+
+        .poster-image:hover {
+            transform: rotate(-2deg);
+        }
+
+        .project-info h1 {
+            display: none; /* Hide duplicate title */
+        }
+
+        .meta-info {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .meta-item {
+            display: flex;
+            padding: 0.75rem 0;
+            border-bottom: 1px dotted rgba(66, 165, 245, 0.2);
+        }
+        
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            min-width: 150px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .meta-value {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .synopsis {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--text);
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            font-style: italic;
+        }
+
+        .project-info h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-info h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .project-info ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 1.05rem;
+        }
+
+        .project-info li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-light);
+            border-bottom: 1px dashed var(--bg-secondary);
+        }
+
+        .project-info li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+
+        .showcase h2 {
+            font-family: var(--font-title);
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .showcase-item {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-deep);
+            border: 1px solid var(--primary-light);
+        }
+        
+        /* Specific image styling for maps */
+        .showcase-item.map-image {
+            box-shadow: none;
+            border: none;
+            background: none;
+            margin-bottom: 1rem; /* Reduce space before its description */
+        }
+        
+        .showcase-item.map-image img {
+            border: 3px solid var(--secondary);
+            border-radius: 1rem;
+        }
+
+        .showcase-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .showcase-description {
+            padding: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .showcase-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .showcase-description li {
+            padding: 0.75rem 0;
+            color: var(--text);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .showcase-description li::before {
+            content: "•";
+            color: var(--primary-light);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .project-details-content {
+                grid-template-columns: 1fr;
+                gap: 3rem; /* Reduce gap on mobile */
+            }
+
+            .poster-container {
+                position: relative;
+                top: 0;
+            }
+
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .banner-content {
+                padding: 2rem;
+            }
+            
+            .banner {
+                min-height: 300px;
+                height: 50vh;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div id="page" class="page">
-		<div class="header">
-			<a class="header__button" href="index.html#leo">
-				<h1 class="header__text">↤Return</h1>
-			</a>
-		</div>
-        <div class="grid">
-            <div class="banner-container	">
-                <img class="banner" src="LeoBanner.png" alt="Banner" />
-				<div class="vignette"></div>
-				<div class="banner__information">
-					<img class="banner__logo" src="LeoLogo.png" alt="Logo">
-					<p class="banner__title">SAVE THE SWAMP ON ITCH.IO</p>
-					<a class="banner__button" href="https://omnitox-0.itch.io/leo-saves-the-swamp" target="_blank">
-						<span class="play-icon">▶</span>
-						PLAY THE GAME</a>
-				</div>
-            </div>
-            <div class="details">
-				<div class="poster-container">
-					<img class="poster" src="LeoPoster.png" alt="Banner" />
-				</div>
-				<div class="text">
-					<h1>Leo Saves the Swamp</h1>
-					<p class="descriptions">
-						<span class="description__title">Genre:</span> 3D Foddian-Platformer<br>
-						<span class="description__title">Engine:</span> Unreal Engine 4<br>
-						<span class="description__title">Team Size:</span> 3<br>
-					</p>
-					<p class="synopsis">
-						One day a small frog named Leo is gazing at the clouds till a large object burst through the sky, and lands in the forest. Upon finding it, the meteor opens, releasing hoards of dangerous flies that kill plants they touch. Now with an empty stomach and even emptier mind, our hero must rid his home of this alien menace! <br><br>
-					</p>
-					<h2>Designed</h2>
-					<ul>
-						<li>Hopping Movement System</li>
-						<li>Swallowing and Shooting System</li>
-						<li>Level Design</li>
-						<li>Puzzle Design</li>
-						<li>Enemy AI Abilities</li>
-						<li>Obstacle Designs</li>
-					</ul>
-					<h2>Programmed</h2>
-					<ul>
-						<li>Movement System</li>
-						<li>Swallowing System</li>
-						<li>Shooting System</li>
-						<li>Collectathon Mechanics</li>
-						<li>Death and Respawn System</li>
-						<li>Fly Enemy Pathing</li>
-						<li>Cinematic System</li>
-						<li>User Interface System</li>
-					</ul>
-				</div>
-            </div>
-			<div class="videos">
-				<h1 class="videos__title">Showcase</h1>
-
-				<img src="LeoMovement.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>This games keystone mechanic is its unique movement system.</li>
-					<li>Instead of holding down forward, the player holds down the jump button to charge up their jump. Once the player releases they jump and a variable distance depending on how long the button was held down</li>
-					<li>This mechanic took inspiration from games like Jump King and Pogostuck</li>
-				</ul>
-
-				<img src="LeoWallJump.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>To build upon the unique movement system, I designd and programmed a wall jump system that complemented the movement mechanics.</li>
-					<li>This decision expanded our teams ability to build the swamp around Leo, gave the players more movement abilities, as well as expanded the scope of our puzzles.</li>
-				</ul>
-
-				<img src="LeoEat.gif" alt="Thumbnail">
-				<img src="LeoShooting.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Leo has the ability to swallow and spit out flies and blueberries.</li>
-					<li>Leo swallowing flies is how he progresses, this collectathon's version of Mario Stars.</li>
-					<li>Leo swallowing and shooting the blueberries is a key mechanic used when solving puzzles.</li>
-				</ul>
-
-				<img class="showcase-item" src="LeoFinishedMap.png" alt="Thumbnail">
-				<img class="showcase-item" src="LeoBlockoutMap.png" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Finished swamp map compared to the initial blockout developed.</li>
-				</ul>
-
-			</div>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-button">
+                ← Back to Portfolio
+            </a>
+            <nav class="nav-links">
+                <a href="#details">Project Lore</a>
+                <a href="#showcase">Exhibit</a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <section class="banner">
+        <img src="LeoBanner.png" alt="Leo Saves the Swamp Project Banner" class="banner-image">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <img src="LeoLogo.png" alt="Leo Saves the Swamp Logo" class="project-logo">
+            <h1>Leo Saves the Swamp</h1>
+            <p class="release-info">Save the Swamp on Itch.io</p>
+            <div class="banner-buttons">
+                <a href="https://omnitox-0.itch.io/leo-saves-the-swamp" class="btn btn-primary" target="_blank">Begin the Adventure</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-details" id="details">
+        <div class="project-details-content">
+            <div class="poster-container">
+                <img src="LeoPoster.png" alt="Leo Saves the Swamp Poster" class="poster-image">
+            </div>
+            
+            <div class="project-info">
+                <h1>Leo Saves the Swamp</h1>
+                
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <span class="meta-label">Genre:</span>
+                        <span class="meta-value">3D Foddian-Platformer</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Engine:</span>
+                        <span class="meta-value">Unreal Engine 4</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Team Size:</span>
+                        <span class="meta-value">3 (Programmer/Designer, Artist, Sound Artist)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Development Time:</span>
+                        <span class="meta-value">2 Weeks (Game Jam)</span>
+                    </div>
+                </div>
+
+                <p class="synopsis">
+                    One day a small frog named Leo is gazing at the clouds till a large object burst through the sky, and lands in the forest. The meteor opens, releasing hoards of dangerous flies that kill plants they touch. Now with an empty stomach and even emptier mind, our hero must rid his home of this alien menace! This project was a 2-week game jam challenge to create a physics-based "Foddian" platformer, inspired by games like Jump King.
+                </p>
+
+                <h2>Design Focus (My Role: Team Leader & Designer)</h2>
+                <ul>
+                    <li>Hopping Movement System: The foundation of the Foddian design, requiring charged jumps for variable distance and control.</li>
+                    <li>Swallowing and Shooting System: Core combat and puzzle mechanics for using flies and blueberries.</li>
+                    <li>Level Design: Architecting a challenging, multi-layered swamp environment that leverages the unique movement.</li>
+                    <li>Puzzle Design: Creating obstacles that require precision jumping, shooting, and resource management.</li>
+                    <li>Enemy AI Abilities: Defining the pathing and threat level of the alien flies.</li>
+                </ul>
+
+                <h2>Programming & Technical Magic (My Role: Programmer)</h2>
+                <ul>
+                    <li>Movement System: Coded the unique charged-jump movement and physics, including the Wall Jump System.</li>
+                    <li>Swallowing System: Engineered the logic for Leo to take in flies and blueberries.</li>
+                    <li>Shooting System: Implemented the projectile mechanics for spitting out objects to solve puzzles.</li>
+                    <li>Collectathon Mechanics: Programmed the fly collecting progression system.</li>
+                    <li>Death and Respawn System: Established the punishing death and respawn loop integral to the Foddian genre.</li>
+                    <li>Fly Enemy Pathing: Developed the basic AI for the alien flies.</li>
+                    <li>Cinematic & UI Systems: Implemented the in-game cinematic sequences and user interface.</li>
+                </ul>
+
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Keystone Movement System: Instead of standard movement, players hold the jump button to charge distance, offering a high-skill, challenging core loop inspired by Jump King.</li>
+                    <li>Wall Jump System: Designed and programmed a complementary wall jump that expands movement options and level scope.</li>
+                    <li>Swallow/Spit Puzzles: Swallowing flies is required for progression; swallowing and shooting blueberries is key to solving physics-based puzzles.</li>
+                    <li>Foddian Challenge: A steep difficulty curve with high stakes for mistakes (losing progress upon death).</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <h2>The Exhibit: Scenes from the World</h2>
+
+            <div class="showcase-item">
+                <img src="LeoMovement.gif" alt="Charged Hopping Movement" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Unique Charged Hopping: This is the game's keystone mechanic. Players hold the jump button to charge jump distance, releasing to leap. This mechanical depth forces precision and strategic planning, defining the Foddian genre experience.</li>
+                        <li>Technical Detail: Jump distance is determined by a variable charge timer.</li>
+                        <li>Design Inspiration: Takes direct inspiration from challenging movement games like Jump King and Pogostuck.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="LeoWallJump.gif" alt="Wall Jump System" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Complementary Wall Jump: A wall jump system was designed and programmed to expand player mobility and puzzle design scope, complementing the challenging hop mechanic.</li>
+                        <li>Design Impact: Allowed the team to create vertical swamp structures and expanded the range of platforming challenges.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="LeoShooting.gif" alt="Swallowing and Shooting Mechanics" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Swallow/Spit Mechanics: Leo can swallow both flies (the collectable objective) and blueberries (the projectile puzzle tool). Shooting blueberries is essential for activating targets and progressing.</li>
+                        <li>Technical Detail: Uses input management to differentiate between swallowing (collect) and shooting (puzzle solve) based on context.</li>
+                        <li>Core Loop: Successfully swallowing alien flies is how Leo progresses in his mission to save the swamp.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="showcase-item map-image" style="box-shadow: none;">
+                <img src="LeoFinishedMap.png" alt="Finished Swamp Map" class="showcase-media" style="border: 3px solid var(--secondary); border-bottom: none;">
+                <img src="LeoBlockoutMap.png" alt="Initial Blockout Map" class="showcase-media" style="border: 3px solid var(--secondary);">
+                <div class="showcase-description" style="margin-top: 1rem;">
+                    <ul style="padding-left: 0;">
+                        <li>Level Development: Comparison between the finished, detailed swamp environment and the initial grey box blockout map.</li>
+                        <li>My Contribution: As the team leader and designer, I was responsible for designing and planning the level layout, which was then decorated by the team artist.</li>
+                        <li>Focus: Ensuring the final environment provided clear visual cues and strategic landing spots for the complex movement system.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:joshwidby6@gmail.com" target="_blank">Email</a>
+                <a href="https://github.com/Otwo6" target="_blank">GitHub</a>
+                <a href="https://widby-games.itch.io/" target="_blank">Itch.io</a>
+                <a href="https://www.linkedin.com/in/josh-widby-8465b2256/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 Josh Widby</p>
+        </div>
+    </footer>
 </body>
 </html>

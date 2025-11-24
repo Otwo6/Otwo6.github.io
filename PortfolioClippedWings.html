@@ -1,112 +1,605 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-    
 <head>
-<title>Clipped Wings | Josh Widby</title>
-<link rel="stylesheet" href="css/project__stylesheet2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipped Wings - A Glimpse Behind the Magic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset and Variables (Celestial Dawn Scheme) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+			--primary: #673AB7; /* Sky Blue */
+			--primary-light: #9575CD;
+			--secondary: #FFC107; /* Bubblegum Pink Accent */
+			--text: #311B92; /* Deep Indigo */
+			--text-light: #5a667f; 
+			--bg: #FFFDE7; /* Near White/Cloud */
+			--bg-secondary: #F3E5F5; /* Pale Powder Blue */
+			--shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+			--shadow-deep: 0 15px 30px rgba(0, 0, 0, 0.2);
+			--font-title: 'Playfair Display', serif;
+			--font-body: 'Roboto', sans-serif;
+		}
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Header Navigation */
+        .header {
+            position: sticky; 
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 251, 252, 0.95); /* Adjusted for new background */
+            backdrop-filter: blur(5px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-light);
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px) scale(1.02);
+            box-shadow: var(--shadow-deep);
+        }
+        
+        /* Navigation links hidden on mobile by default to simplify */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Banner Section */
+        .banner {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            margin-top: 70px;
+            /* UPDATED: Enhanced Dreamy Gradient (Deep Indigo to Sky Blue) */
+            background: linear-gradient(145deg, #1A237E 0%, #42A5F5 100%);
+            overflow: hidden;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            transition: opacity 0.5s ease;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(66, 165, 245, 0.3), rgba(26, 35, 126, 0.7)); /* Adjusted for new colors */
+        }
+
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2rem;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-logo {
+            max-width: 250px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 128, 171, 0.5)); /* Adjusted for new secondary */
+        }
+
+        .banner-content h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .release-info {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Reusing visionary button styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem; 
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 128, 171, 0.4); /* Adjusted for new secondary */
+        }
+
+        .btn-secondary {
+            background: none;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Project Details Section - MODIFIED FOR CENTERING */
+        .project-details {
+            padding: 4rem 0;
+            /* Centering the section content */
+            display: flex; 
+            justify-content: center;
+        }
+
+        /* Inner container for the two columns */
+        .project-details-content { 
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+            max-width: 1200px; /* Limit the width of the content grid */
+            width: 100%;
+        }
+
+        /* Poster Container - MODIFIED TO REMOVE STICKY POSITION */
+        .poster-container {
+            /* position: sticky; <-- REMOVED */
+            top: 100px;
+            height: fit-content;
+        }
+
+        .poster-image {
+            width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-deep);
+            border: 5px solid var(--primary-light);
+            transition: transform 0.3s ease;
+        }
+
+        .poster-image:hover {
+            transform: rotate(-2deg);
+        }
+
+        .project-info h1 {
+            display: none; /* Hide duplicate title */
+        }
+
+        .meta-info {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .meta-item {
+            display: flex;
+            padding: 0.75rem 0;
+            border-bottom: 1px dotted rgba(66, 165, 245, 0.2); /* Adjusted for new primary */
+        }
+        
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            min-width: 150px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .meta-value {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .synopsis {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--text);
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            font-style: italic;
+        }
+
+        .project-info h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-info h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .project-info ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 1.05rem;
+        }
+
+        .project-info li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-light);
+            border-bottom: 1px dashed var(--bg-secondary);
+        }
+
+        .project-info li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+
+        .showcase h2 {
+            font-family: var(--font-title);
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .showcase-item {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-deep);
+            border: 1px solid var(--primary-light);
+        }
+
+        .showcase-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .showcase-description {
+            padding: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .showcase-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .showcase-description li {
+            padding: 0.75rem 0;
+            color: var(--text);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .showcase-description li::before {
+            content: "•";
+            color: var(--primary-light);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .project-details-content {
+                grid-template-columns: 1fr;
+                gap: 3rem; /* Reduce gap on mobile */
+            }
+
+            .poster-container {
+                position: relative;
+                top: 0;
+            }
+
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .banner-content {
+                padding: 2rem;
+            }
+            
+            .banner {
+                min-height: 300px;
+                height: 50vh;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div id="page" class="page">
-		<div class="header">
-			<a class="header__button" href="index.html#clipped-wings">
-				<h1 class="header__text">↤Return</h1>
-			</a>
-		</div>
-        <div class="grid">
-            <div class="banner-container	">
-                <img class="banner" src="ClippedWingsBanner.png" alt="Banner" />
-				<div class="vignette"></div>
-				<div class="banner__information">
-					<img class="banner__logo" src="ClippedWingsLogo.png" alt="Logo">
-					<p class="banner__title">RELEASING OCTOBER 31, 2024</p>
-					<a class="banner__button" href="https://docs.google.com/document/d/11giFEU0lPns01_B4z9wnZ9FcjOZb7MA6CT0N82c90i8/edit?usp=sharing" target="_blank">
-						DESIGN DOCUMENT</a>
-				</div>
-            </div>
-            <div class="details">
-				<div class="poster-container">
-					<img class="poster" src="LookingAtArt.png" alt="Banner" />
-				</div>
-				<div class="text">
-					<h1>Clipped Wings</h1>
-					<p class="descriptions">
-						<span class="description__title">Genre:</span> 3D Puzzle-Platformer<br>
-						<span class="description__title">Engine:</span> Unity<br>
-						<span class="description__title">Team Size:</span> 1<br>
-					</p>
-					<p class="synopsis">
-						Jay the Blue Jay was a loud and arrogant bird, with a love for daring aerial stunts and tricks. In "Clipped Wings", Jay's world crashes down when an accident robs him of his ability to fly. Stripped of his wings and grounded for the first time in his life, Jay embarks on a journey through the stages of grief, fighting with his new reality.<br><br>
-					</p>
-					<h2>Designed</h2>
-					<ul>
-						<li>Camera Mechanics</li>
-						<li>Gameplay Mechanics</li>
-						<li>Level Designs</li>
-						<li>Puzzle Designs</li>
-					</ul>
-					<h2>Programmed</h2>
-					<ul>
-						<li>Movement System</li>
-						<li>Camera Systems</li>
-						<li>Dialogue System</li>
-						<li>Puzzle Mechanics</li>
-						<li>Save System</li>
-						<li>Cinematic System</li>
-						<li>User Interface System</li>
-					</ul>
-				</div>
-            </div>
-			<div class="videos">
-				<h1 class="videos__title">Showcase</h1>
-
-				<img src="ClippedWingsAnxiety.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>The key mechanic in this game is the Anxiety system.</li>
-					<li>If the player sits in the red areas their anxiety grows which is shown by the shaking camera and the vignette appearing.</li>
-					<li>When the player steps out their anxiety lowers.</li>
-					<li>The Anxiety Gain is slowed here to showcase the system.</li>
-				</ul>
-
-				<img src="ClippedWingsChat.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>A way to advance the story, I've implemented a flexible chatting system.</li>
-				</ul>
-
-				<img src="ClippedWingsGrab.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>To give the player the ability to combat the Anxiety, they can block the red area with objects to grab.</li>
-				</ul>
-
-				<img src="ClippedWingsDeny.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Another way the player combats the Anxiety is by denying the red areas existence, one of the five stages of grief.</li>
-					<li>You can only deny one red area at once so when you deny red area the red area you've already denied reappears.</li>
-				</ul>
-
-				<img src="ClippedWingsDenyDoor.gif" alt="Thumbnail">
-				<img src="ClippedWingsDenyPlatform.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Adding onto the denial ability, the player can start, stop, open, and close doors.</li>
-				</ul>
-
-				<img src="ClippedWingsAngerWall.gif" alt="Thumbnail">
-				<img src="ClippedWingsAngerWall2.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Players can break through walls by punching them, the more they punch the angrier they get.</li>
-					<li>The angrier the player, the more power they can punch through the wall with.</li>
-					<li>Some walls can be broken with lower level punches, some require higher level punches.</li>
-				</ul>
-
-				<img src="ClippedWingsAngerBoat.gif" alt="Thumbnail">
-				<img src="ClippedWingsAngerCannon.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Anger not only breaks walls, it can release moving platforms and shoot cannons to create pathways.</li>
-				</ul>
-
-			</div>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-button">
+                ← Back to Portfolio
+            </a>
+            <nav class="nav-links">
+                <a href="#details">Project Lore</a>
+                <a href="#showcase">Exhibit</a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <section class="banner">
+        <img src="ClippedWingsBanner.png" alt="Clipped Wings Project Banner" class="banner-image">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <img src="ClippedWingsLogo.png" alt="Clipped Wings Logo" class="project-logo">
+            <h1>Clipped Wings</h1>
+            <p class="release-info">Spread your wings on Itch.io</p>
+            <div class="banner-buttons">
+                <a href="#" class="btn btn-primary" target="_blank">Begin the Adventure</a>
+                <a href="https://docs.google.com/document/d/11giFEU0lPns01_B4z9wnZ9FcjOZb7MA6CT0N82c90i8/edit?usp=sharing" class="btn btn-secondary" target="_blank">Read the Design Document</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-details" id="details">
+        <div class="project-details-content">
+            <div class="poster-container">
+                <img src="LookingAtArt.png" alt="Jay the Blue Jay Looking at Art" class="poster-image">
+            </div>
+            
+            <div class="project-info">
+                <h1>Clipped Wings</h1>
+                
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <span class="meta-label">Genre:</span>
+                        <span class="meta-value">3D Puzzle Platformer</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Engine:</span>
+                        <span class="meta-value">Unity</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Team Size:</span>
+                        <span class="meta-value">1</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Development Time:</span>
+                        <span class="meta-value">5 months</span>
+                    </div>
+                </div>
+
+                <p class="synopsis">
+                    Jay the Blue Jay was a loud and arrogant bird, with a love for daring aerial stunts and tricks. In Clipped Wings, Jay's world crashes down when an accident robs him of his ability to fly. Stripped of his wings and grounded for the first time in his life, Jay embarks on a journey through the five stages of grief, fighting with his new reality.
+                </p>
+
+                <h2>Design & Focus</h2>
+                <p style="font-size: 1.05rem; color: var(--text-light);">As the sole developer, I designed the entire experience, centered around showcasing a positive journey through mental health.</p>
+                <ul>
+                    <li>The Narrative Arc: Focused on symbolizing the stages of grief (Denial, Anger, Bargaining, Depression, Acceptance) through unique level mechanics.</li>
+                    <li>The Core Loop: Defining core gameplay around Jay's limited movement and environmental puzzles influenced by his emotional state.</li>
+                    <li>The Map: Designing levels and layouts to represent abstract emotional landscapes and the struggle of acceptance.</li>
+                    <li>The Framing: Crafting Camera Mechanics to frame the world for maximum emotional and narrative impact.</li>
+                    </ul>
+
+                <h2>Programming & Mechanics</h2>
+                <ul>
+                    <li>Built a responsive player movement controller specifically designed for the grounded bird protagonist.</li>
+                    <li>Developed Camera Systems for cinematic and gameplay use.</li>
+                    <li>Engineered a flexible and reusable Dialogue System for advancing the story.</li>
+                    <li>Implemented all core Puzzle Mechanics for the Denial, Anger, and Bargaining stages (C# scripting).</li>
+                    <li>Created an efficient Save System to persist the player's progress.</li>
+                    <li>Custom Cinematic System for scripted in-engine moments.</li>
+                    <li>Designed and coded the User Interface System for menus and in-game HUD.</li>
+                    </ul>
+
+                <h2>Key Features - Treasures Discovered</h2>
+                <ul>
+                    <li>Anxiety System: A dynamic mechanic where red hazard zones cause the camera to shake and a vignette to appear, symbolizing Jay's growing anxiety.</li>
+                    <li>Denial Mechanic: Allows the player to temporarily 'deny' a single red anxiety area, removing it to solve a puzzle, but causing a previously denied area to reappear.</li>
+                    <li>Anger/Punch Mechanic: Players can break through specific walls by punching, with the force and effectiveness scaled by Jay's rising anger level.</li>
+                    <li>Object Manipulation: Implemented a grab and push system to block anxiety zones or move platforms.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <h2>The Exhibit</h2>
+
+            <div class="showcase-item">
+                <img src="ClippedWingsAnxiety.gif" alt="Anxiety System Gameplay Loop" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Dynamic Anxiety System: This sequence demonstrates the core mood mechanic. When Jay sits in red areas, his anxiety grows, resulting in a shaking camera and an intense vignette to communicate the emotional pressure.</li>
+                        <li>Technical Detail: The visual and camera effects are driven by an anxiety variable (`float`) that smoothly interpolates between zero and one, controlling post-processing volumes and Cinemachine properties.</li>
+                        <li>Design Goal: To create a constant, visible, yet manageable challenge related to Jay's emotional state.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="ClippedWingsGrab.gif" alt="Grabbing Objects to Block Anxiety Zones" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Grab and Push Mechanic: To combat the Anxiety system, players can grab and move objects to block the red hazard zones. This is a foundational puzzle element.</li>
+                        <li>Technical Detail: Uses a Raycast check for interactable objects and a Parent Constraint to simulate grabbing, allowing for controlled physics-based pushing.</li>
+                        <li>Importance: Provides the player with agency and a means to overcome environmental obstacles.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="ClippedWingsDeny.gif" alt="Denial Mechanic in Action" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Denial Stage Mechanic: This mechanic allows the player to temporarily deny a red area's existence, making it disappear. Crucially, you can only deny one area at a time, forcing players to choose which obstacle to ignore.</li>
+                        <li>Technical Implementation: Managed by a global static reference that tracks the currently denied object. When a new object is denied, the previous one is instantly reinstated.</li>
+                        <li>Narrative Connection: This mechanic directly symbolizes the fleeting, temporary nature of the Denial stage of grief.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="ClippedWingsAngerWall.gif" alt="Anger Punching Through Walls" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Anger Stage Mechanic (Wall Breaking): Players can use their anger to punch through certain walls. The more they punch, the angrier (and stronger) Jay becomes.</li>
+                        <li>Technical Implementation: Punch power is tracked by an `AngerLevel` variable. Walls have a required `Resistance` value, and a raycast determines the punch hit.</li>
+                        <li>Design Detail: Different walls require different levels of accumulated anger, forcing players to manage this resource.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="showcase-item">
+                <img src="ClippedWingsAngerCannon.gif" alt="Anger Used to Shoot Cannon" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Anger Stage Mechanic (Environmental): Anger is not just for breaking; it can also be used to interact with certain environment objects, like releasing platforms or shooting cannons to create new pathways.</li>
+                        <li>Experience Focus: Demonstrates how the core emotional mechanics are integrated into puzzle solving across the entire environment.</li>
+                        <li>Additional Feature: The game also features a flexible chatting system for advancing the story.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:joshwidby6@gmail.com" target="_blank">Email</a>
+                <a href="https://github.com/Otwo6" target="_blank">GitHub</a>
+                <a href="https://widby-games.itch.io/" target="_blank">Itch.io</a>
+                <a href="https://www.linkedin.com/in/josh-widby-8465b2256/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 Josh Widby</p>
+        </div>
+    </footer>
 </body>
 </html>

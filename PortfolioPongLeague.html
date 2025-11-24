@@ -1,96 +1,576 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-    
 <head>
-<title>Pong League | Josh Widby</title>
-<link rel="stylesheet" href="css/project__stylesheet2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong League - A Glimpse Behind the Magic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset and Variables (Celestial Dawn Scheme) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+			--primary: #673AB7; /* Sky Blue */
+			--primary-light: #9575CD;
+			--secondary: #FFC107; /* Bubblegum Pink Accent */
+			--text: #311B92; /* Deep Indigo */
+			--text-light: #5a667f; 
+			--bg: #FFFDE7; /* Near White/Cloud */
+			--bg-secondary: #F3E5F5; /* Pale Powder Blue */
+			--shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+			--shadow-deep: 0 15px 30px rgba(0, 0, 0, 0.2);
+			--font-title: 'Playfair Display', serif;
+			--font-body: 'Roboto', sans-serif;
+		}
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Header Navigation */
+        .header {
+            position: sticky; 
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 251, 252, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-light);
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px) scale(1.02);
+            box-shadow: var(--shadow-deep);
+        }
+        
+        /* Navigation links hidden on mobile by default to simplify */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Banner Section */
+        .banner {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            margin-top: 70px;
+            /* UPDATED: Enhanced Dreamy Gradient (Deep Indigo to Sky Blue) */
+            background: linear-gradient(145deg, #1A237E 0%, #42A5F5 100%);
+            overflow: hidden;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            transition: opacity 0.5s ease;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(66, 165, 245, 0.3), rgba(26, 35, 126, 0.7));
+        }
+
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2rem;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-logo {
+            max-width: 250px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 128, 171, 0.5));
+        }
+
+        .banner-content h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .release-info {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Reusing visionary button styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem; 
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 128, 171, 0.4);
+        }
+
+        .btn-secondary {
+            background: none;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Project Details Section - MODIFIED FOR CENTERING */
+        .project-details {
+            padding: 4rem 0;
+            /* Centering the section content */
+            display: flex; 
+            justify-content: center;
+        }
+
+        /* Inner container for the two columns */
+        .project-details-content { 
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+            max-width: 1200px; /* Limit the width of the content grid */
+            width: 100%;
+        }
+
+        /* Poster Container - MODIFIED TO REMOVE STICKY POSITION */
+        .poster-container {
+            /* position: sticky; <-- REMOVED */
+            top: 100px;
+            height: fit-content;
+        }
+
+        .poster-image {
+            width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-deep);
+            border: 5px solid var(--primary-light);
+            transition: transform 0.3s ease;
+        }
+
+        .poster-image:hover {
+            transform: rotate(-2deg);
+        }
+
+        .project-info h1 {
+            display: none; /* Hide duplicate title */
+        }
+
+        .meta-info {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .meta-item {
+            display: flex;
+            padding: 0.75rem 0;
+            border-bottom: 1px dotted rgba(66, 165, 245, 0.2);
+        }
+        
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            min-width: 150px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .meta-value {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .synopsis {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--text);
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            font-style: italic;
+        }
+
+        .project-info h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-info h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .project-info ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 1.05rem;
+        }
+
+        .project-info li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-light);
+            border-bottom: 1px dashed var(--bg-secondary);
+        }
+
+        .project-info li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+
+        .showcase h2 {
+            font-family: var(--font-title);
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .showcase-item {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-deep);
+            border: 1px solid var(--primary-light);
+        }
+        
+        .showcase-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .showcase-description {
+            padding: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .showcase-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .showcase-description li {
+            padding: 0.75rem 0;
+            color: var(--text);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .showcase-description li::before {
+            content: "•";
+            color: var(--primary-light);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .project-details-content {
+                grid-template-columns: 1fr;
+                gap: 3rem; /* Reduce gap on mobile */
+            }
+
+            .poster-container {
+                position: relative;
+                top: 0;
+            }
+
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .banner-content {
+                padding: 2rem;
+            }
+            
+            .banner {
+                min-height: 300px;
+                height: 50vh;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div id="page" class="page">
-		<div class="header">
-			<a class="header__button" href="index.html#pong-league">
-				<h1 class="header__text">↤Return</h1>
-			</a>
-		</div>
-        <div class="grid">
-            <div class="banner-container	">
-                <img class="banner" src="PongLeagueBanner.png" alt="Banner" />
-				<div class="vignette"></div>
-				<div class="banner__information">
-					<img class="banner__logo" src="PongLeagueLogo.png" alt="Logo">
-					<p class="banner__title">TAKE TO THE FIELD ON ITCH.IO</p>
-					<a class="banner__button" href="https://widby-games.itch.io/pong-league" target="_blank">
-						<span class="play-icon">▶</span>
-						PLAY THE GAME</a>
-				</div>
-            </div>
-            <div class="details">
-				<div class="poster-container">
-					<img class="poster" src="PongLeaguePoster.png" alt="Banner" />
-				</div>
-				<div class="text">
-					<h1>Pong League</h1>
-					<p class="descriptions">
-						<span class="description__title">Genre:</span> Sports<br>
-						<span class="description__title">Engine:</span> Unreal Engine 5<br>
-						<span class="description__title">Team Size:</span> 1<br>
-					</p>
-					<p class="synopsis">
-						In the year 3000, prime entertainment has evolved from baseball and car soccer. No longer do the people want to see humans competing, now they watch robots with huge shields in front of them playing Pong, a game created in 1972. Compete with friends in this Couch-Compete 1v1 game!
-					</p>
-					<h2>Designed</h2>
-					<ul>
-						<li>Ball Mechanics</li>
-						<li>Scoring System</li>
-						<li>Game Loop</li>
-						<li>Player Movement System</li>
-						<li>Player Aiming System</li>
-						<li>Menu Navigation</li>
-					</ul>
-					<h2>Programmed</h2>
-					<ul>
-						<li>Movement and Aiming System</li>
-						<li>Scoring System</li>
-						<li>Physics-Based Ball Systems</li>
-						<li>Dynamic-Crowd System</li>
-					</ul>
-					<h2>Art Work</h2>
-					<ul>
-						<li>Modeled the Field and Players</li>
-						<li>Textured the Field and Players</li>
-						<li>Created the In-Game UI</li>
-						<li>Created the Menu UI</li>
-					</ul>
-				</div>
-            </div>
-			<div class="videos">
-				<h1 class="videos__title">Showcase</h1>
-
-				<img src="PongLeagueMovement.gif" alt="Thumbnail">
-				<img src="PongLeagueRotation.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Pong League's unique movement system was inspired by games like Hotline Miami and other top-down shooters.</li>
-					<li>Player movement is controlled by the left thumbstick. The player moves up, down, left, right, with no rotation.</li>
-					<li>Player rotation is controlled by the right thumbstick. The spins around with no movement.</li>
-					<li>Players must use both thumbsticks to maximize movement around the map.</li>
-				</ul>
-
-				<img src="PongLeagueDash.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>The robot players also hold the ability to dash, this allows them to move across the map quickly.</li>
-					<li>There is a cooldown after the dash so players' must carefuly decide when dashing is necessary.</li>
-				</ul>
-
-				<img src="PongLeagueStartup.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>Before games there is a ready-up system to ensure both players are ready.</li>
-					<li>After both players are ready there is a smooth transition into gameplay.</li>
-				</ul>
-
-			</div>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-button">
+                ← Back to Portfolio
+            </a>
+            <nav class="nav-links">
+                <a href="#details">Project Lore</a>
+                <a href="#showcase">Exhibit</a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <section class="banner">
+        <img src="PongLeagueBanner.png" alt="Pong League Project Banner" class="banner-image">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <img src="PongLeagueLogo.png" alt="Pong League Logo" class="project-logo">
+            <h1>Pong League</h1>
+            <p class="release-info">Take to the Field on Itch.io</p>
+            <div class="banner-buttons">
+                <a href="https://widby-games.itch.io/pong-league" class="btn btn-primary" target="_blank">Play the Game</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-details" id="details">
+        <div class="project-details-content">
+            <div class="poster-container">
+                <img src="PongLeaguePoster.png" alt="Pong League Poster" class="poster-image">
+            </div>
+            
+            <div class="project-info">
+                <h1>Pong League</h1>
+                
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <span class="meta-label">Genre:</span>
+                        <span class="meta-value">Sports / Top-Down Arcade (Couch Co-op)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Engine:</span>
+                        <span class="meta-value">Unreal Engine 5</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Team Size:</span>
+                        <span class="meta-value">1</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Development Time:</span>
+                        <span class="meta-value">1 Week (Personal Challenge)</span>
+                    </div>
+                </div>
+
+                <p class="synopsis">
+                    In the year 3000, prime entertainment has evolved into Pong League: a couch-competitive 1v1 game where robots with huge shields play an evolution of the 1972 classic. Inspired by Rocket League and top-down shooters, this project was a one-week personal challenge to design, model, and develop a fully functional fictional sport.
+                </p>
+
+                <h2>Design & Focus</h2>
+                <ul>
+                    <li>Player Movement System: Designed a complex, dual-stick system (movement independent of rotation) to maximize player control and skill cap.</li>
+                    <li>Scoring System: Established the rules, goals, and logic for tracking and displaying the competitive score.</li>
+                    <li>Game Loop: Defined the match flow, from the ready-up sequence to the win state.</li>
+                    <li>Ball Mechanics: Designed custom physics and collision logic for the central "ball" to ensure unpredictable yet fair bounce patterns.</li>
+                    <li>Menu Navigation: Created a functional and thematic in-game menu system for quick starts.</li>
+                </ul>
+
+                <h2>Programming & Technical Magic</h2>
+                <ul>
+                    <li>Movement and Aiming System: Programmed the unique dual-thumbstick control scheme for players (movement via left, rotation via right).</li>
+                    <li>Physics-Based Ball Systems: Developed custom projectile and collision response scripting for the ball.</li>
+                    <li>Scoring System: Implemented the trigger logic, score tracking, and on-screen score updates.</li>
+                    <li>Dynamic-Crowd System: Programmed subtle environmental elements (like a dynamic audience) to enhance the sports atmosphere.</li>
+                </ul>
+                
+                <h2>Art Work (Modeling, Texturing, UI)</h2>
+                <ul>
+                    <li>3D Modeling: Modeled the futuristic field environment and the robot players.</li>
+                    <li>Texturing: Created and applied textures to the field and player models.</li>
+                    <li>UI Implementation: Created the in-game HUD and the menu navigation user interface.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <h2>The Exhibit</h2>
+
+            <div class="showcase-item">
+                <img src="PongLeagueMovement.gif" alt="Movement and Rotation System" class="showcase-media">
+                <img src="PongLeagueRotation.gif" alt="Rotation and Movement System" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Dual-Stick Movement: The unique control system forces players to manage two independent vectors (movement and rotation), inspired by top-down shooters like Hotline Miami. Movement is on the left stick, rotation is on the right.</li>
+                        <li>Design Challenge: Players must master using both thumbsticks simultaneously to maximize movement speed and defensive coverage.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="PongLeagueDash.gif" alt="Player Dash Ability" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>The Dash Mechanic: Robot players are equipped with a dash ability, allowing for quick bursts of movement across the map.</li>
+                        <li>Technical Detail: The dash has a programmed cooldown, demanding players strategically decide when to use this critical resource for defense or offense.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="PongLeagueStartup.gif" alt="Ready-Up and Game Start Cinematic" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Game Flow: Implementation of a "ready-up" system to ensure both players are present and prepared before the match begins.</li>
+                        <li>Experience Focus: Features a smooth, designed transition into gameplay, enhancing the feeling of competitive sports presentation.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:joshwidby6@gmail.com" target="_blank">Email</a>
+                <a href="https://github.com/Otwo6" target="_blank">GitHub</a>
+                <a href="https://widby-games.itch.io/" target="_blank">Itch.io</a>
+                <a href="https://www.linkedin.com/in/josh-widby-8465b2256/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 Josh Widby</p>
+        </div>
+    </footer>
 </body>
 </html>

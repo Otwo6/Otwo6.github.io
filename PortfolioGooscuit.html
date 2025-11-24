@@ -1,72 +1,568 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-    
 <head>
-<title>My Bondling - Gooscuit | Josh Widby</title>
-<link rel="stylesheet" href="css/project__stylesheet2.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bondling - Gooscuit - A Glimpse Behind the Magic</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset and Variables (Celestial Dawn Scheme) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+			--primary: #673AB7; /* Sky Blue */
+			--primary-light: #9575CD;
+			--secondary: #FFC107; /* Bubblegum Pink Accent */
+			--text: #311B92; /* Deep Indigo */
+			--text-light: #5a667f; 
+			--bg: #FFFDE7; /* Near White/Cloud */
+			--bg-secondary: #F3E5F5; /* Pale Powder Blue */
+			--shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
+			--shadow-deep: 0 15px 30px rgba(0, 0, 0, 0.2);
+			--font-title: 'Playfair Display', serif;
+			--font-body: 'Roboto', sans-serif;
+		}
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Header Navigation */
+        .header {
+            position: sticky; 
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 251, 252, 0.95);
+            backdrop-filter: blur(5px);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-light);
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            background: var(--bg-secondary);
+        }
+
+        .back-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px) scale(1.02);
+            box-shadow: var(--shadow-deep);
+        }
+        
+        /* Navigation links hidden on mobile by default to simplify */
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Banner Section */
+        .banner {
+            position: relative;
+            height: 60vh;
+            min-height: 400px;
+            margin-top: 70px;
+            /* UPDATED: Enhanced Dreamy Gradient (Deep Indigo to Sky Blue) */
+            background: linear-gradient(145deg, #1A237E 0%, #42A5F5 100%);
+            overflow: hidden;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.2;
+            transition: opacity 0.5s ease;
+        }
+
+        .banner-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(66, 165, 245, 0.3), rgba(26, 35, 126, 0.7));
+        }
+
+        .banner-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 3rem 2rem;
+            color: white;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-logo {
+            max-width: 250px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(255, 128, 171, 0.5));
+        }
+
+        .banner-content h1 {
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .release-info {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .banner-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Reusing visionary button styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem; 
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: var(--secondary);
+            color: var(--text);
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 128, 171, 0.4);
+        }
+
+        .btn-secondary {
+            background: none;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.02);
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        /* Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Project Details Section - MODIFIED FOR CENTERING */
+        .project-details {
+            padding: 4rem 0;
+            /* Centering the section content */
+            display: flex; 
+            justify-content: center;
+        }
+
+        /* Inner container for the two columns */
+        .project-details-content { 
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+            max-width: 1200px; /* Limit the width of the content grid */
+            width: 100%;
+        }
+
+        /* Poster Container - MODIFIED TO REMOVE STICKY POSITION */
+        .poster-container {
+            /* position: sticky; <-- REMOVED */
+            top: 100px;
+            height: fit-content;
+        }
+
+        .poster-image {
+            width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow-deep);
+            border: 5px solid var(--primary-light);
+            transition: transform 0.3s ease;
+        }
+
+        .poster-image:hover {
+            transform: rotate(-2deg);
+        }
+
+        .project-info h1 {
+            display: none; /* Hide duplicate title */
+        }
+
+        .meta-info {
+            background: var(--bg-secondary);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 3rem;
+            border-left: 5px solid var(--primary);
+            box-shadow: var(--shadow-light);
+        }
+
+        .meta-item {
+            display: flex;
+            padding: 0.75rem 0;
+            border-bottom: 1px dotted rgba(66, 165, 245, 0.2);
+        }
+        
+        .meta-item:last-child {
+            border-bottom: none;
+        }
+
+        .meta-label {
+            font-weight: 700;
+            min-width: 150px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .meta-value {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .synopsis {
+            font-family: var(--font-title);
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: var(--text);
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--secondary);
+            font-style: italic;
+        }
+
+        .project-info h2 {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-info h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .project-info ul {
+            list-style: none;
+            padding-left: 0;
+            font-size: 1.05rem;
+        }
+
+        .project-info li {
+            padding: 0.6rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-light);
+            border-bottom: 1px dashed var(--bg-secondary);
+        }
+
+        .project-info li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Showcase Section */
+        .showcase {
+            background: var(--bg-secondary);
+            padding: 5rem 0;
+        }
+
+        .showcase h2 {
+            font-family: var(--font-title);
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .showcase-item {
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-deep);
+            border: 1px solid var(--primary-light);
+        }
+        
+        .showcase-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .showcase-description {
+            padding: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .showcase-description ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .showcase-description li {
+            padding: 0.75rem 0;
+            color: var(--text);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        .showcase-description li::before {
+            content: "•";
+            color: var(--primary-light);
+            font-weight: bold;
+            display: inline-block;
+            width: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 960px) {
+            .project-details-content {
+                grid-template-columns: 1fr;
+                gap: 3rem; /* Reduce gap on mobile */
+            }
+
+            .poster-container {
+                position: relative;
+                top: 0;
+            }
+
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .banner-content {
+                padding: 2rem;
+            }
+            
+            .banner {
+                min-height: 300px;
+                height: 50vh;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <div id="page" class="page">
-		<div class="header">
-			<a class="header__button" href="index.html#gooscuit">
-				<h1 class="header__text">↤Return</h1>
-			</a>
-		</div>
-        <div class="grid">
-            <div class="banner-container	">
-                <img class="banner" src="MyBondlingBanner.png" alt="Banner" />
-				<div class="vignette"></div>
-				<div class="banner__information">
-					<img class="banner__logo" src="GooscuitLogo.png" alt="Logo">
-					<p class="banner__title">BECOME A PET OWNER ITCH.IO</p>
-					<a class="banner__button" href="https://omnitox-0.itch.io/my-bondling" target="_blank">
-						<span class="play-icon">▶</span>
-						TRY THE DEMO</a>
-				</div>
-            </div>
-            <div class="details">
-				<div class="poster-container">
-					<img class="poster" src="MyBondlingPoster.png" alt="Banner" />
-				</div>
-				<div class="text">
-					<h1>My Bondling - Gooscuit</h1>
-					<p class="descriptions">
-						<span class="description__title">Genre:</span> Pet-Simulation<br>
-						<span class="description__title">Engine:</span> Unreal Engine 5<br>
-						<span class="description__title">Team Size:</span> 2<br>
-					</p>
-					<p class="synopsis">
-						From another world, little pets adorably named "Bondlings" fell from the sky and humans immediately took a liking. One of these pets is named a Gooscuit, a mix between a snail and a dog. These Gooscuits can be a real handful to take care of when they are young, experience the life of a Gooscuit owner for a short time. <br><br>
-					</p>
-					<h2>Programmed</h2>
-					<ul>
-						<li>Gooscuit AI Hunger and Bathroom Needs</li>
-						<li>Gooscuit AI Movement</li>
-						<li>Pick Up Interaction System</li>
-						<li>Game Timer</li>
-					</ul>
-				</div>
-            </div>
-			<div class="videos">
-				<h1 class="videos__title">Showcase</h1>
-
-				<img src="MyBondlingInteraction.gif" alt="Thumbnail">
-				<img src="MyBondlingDoor.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>A key mechanic to taking care of your Gooscuit is the interaction system, letting you pick up toys, feed and clean up for your Bondling, and opening and closing doors.</li>
-					<li>This created an easy to understand system that could be further expanded on with different puzzles, hiding traps, clues, doors, and more.</li>
-				</ul>
-
-				<img src="MyBondlingPoop.gif" alt="Thumbnail">
-				<img src="MyBondlingEating.gif" alt="Thumbnail">
-				<ul class="video__name">
-					<li>While playing your Gooscuit will move around your house.</li>
-					<li>Your Gooscuit will also poop, walk, and sleep as it sees fit. Keep your house clean and his belly full!</li>
-				</ul>
-			</div>
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-button">
+                ← Back to Portfolio
+            </a>
+            <nav class="nav-links">
+                <a href="#details">Project Lore</a>
+                <a href="#showcase">Exhibit</a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <section class="banner">
+        <img src="MyBondlingBanner.png" alt="My Bondling - Gooscuit Project Banner" class="banner-image">
+        <div class="banner-overlay"></div>
+        <div class="banner-content">
+            <img src="GooscuitLogo.png" alt="My Bondling - Gooscuit Logo" class="project-logo">
+            <h1>My Bondling - Gooscuit</h1>
+            <p class="release-info">Become a Pet Owner on Itch.io</p>
+            <div class="banner-buttons">
+                <a href="https://omnitox-0.itch.io/my-bondling" class="btn btn-primary" target="_blank">Try the Demo</a>
+                <a href="index.html#gooscuit" class="btn btn-secondary">Project Overview</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="project-details" id="details">
+        <div class="project-details-content">
+            <div class="poster-container">
+                <img src="MyBondlingPoster.png" alt="My Bondling - Gooscuit Poster" class="poster-image">
+            </div>
+            
+            <div class="project-info">
+                <h1>My Bondling - Gooscuit</h1>
+                
+                <div class="meta-info">
+                    <div class="meta-item">
+                        <span class="meta-label">Genre:</span>
+                        <span class="meta-value">Pet-Simulation / Life Sim</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Engine:</span>
+                        <span class="meta-value">Unreal Engine 5</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Team Size:</span>
+                        <span class="meta-value">2 (Programmer & Artist)</span>
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Development Time:</span>
+                        <span class="meta-value">1 Week</span>
+                    </div>
+                </div>
+
+                <p class="synopsis">
+                    Bondlings are little pets from another world that humans have quickly adopted. The Gooscuit, a charming mix between a snail and a dog, can be a real handful to care for when young. This project is a collaboration with an art student to bring his dream pet simulation to life, focusing heavily on realistic pet AI and essential care mechanics.
+                </p>
+
+                <h2>Programming & Technical Magic (My Role)</h2>
+                <ul>
+                    <li>Gooscuit AI Logic: Programmed the Bondling's internal state machine for Hunger and Bathroom Needs.</li>
+                    <li>Gooscuit AI Movement: Implemented realistic movement behaviors (walking, sleeping) for the pet around the house.</li>
+                    <li>Pick Up Interaction System: Developed the primary interaction system allowing players to pick up toys, feed, and clean up after their Bondling.</li>
+                    <li>Game Timer: Programmed the core timing mechanics that drive the pet's needs and progression.</li>
+                </ul>
+
+                <h2>Design & Focus (Scope Implementation)</h2>
+                <p style="font-size: 1.05rem; color: var(--text-light);">I worked closely with the artist to scope and program his creative vision, focusing on core pet-owner loop mechanics.</p>
+                <ul>
+                    <li>Pet Need States: Ensuring the AI correctly transitions between hunger, fatigue, and bathroom needs.</li>
+                    <li>Player Agency: Designing the pick-up and interaction system to be intuitive for managing the pet's environment and care.</li>
+                    <li>Environmental Interaction: Designing systems for opening and closing doors and interacting with the house environment.</li>
+                </ul>
+                
+                <h2>Key Features - Treasures Discovered</h2>
+                <ul>
+                    <li>Responsive Interaction System: Allows players to easily manage the pet's environment, including picking up toys, food, and cleaning supplies.</li>
+                    <li>Pet Autonomy: The Gooscuit moves, sleeps, eats, and relieves itself autonomously, ensuring the player must actively respond to its needs.</li>
+                    <li>Collaboration: A successful programming partnership bringing an artist's unique character design to life in a functional Unreal Engine 5 environment.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+        <div class="container">
+            <h2>The Exhibit: The Life of a Gooscuit</h2>
+
+            <div class="showcase-item">
+                <img src="MyBondlingInteraction.gif" alt="Interaction System and Doors" class="showcase-media">
+                <img src="MyBondlingDoor.gif" alt="Door Interaction" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>Core Interaction System: Demonstrates the key mechanic for pet care: the player's ability to pick up and manipulate objects (toys, food).</li>
+                        <li>Environmental Controls: The system also handles opening and closing doors, which is crucial for managing the Gooscuit's movement within the house.</li>
+                        <li>Technical Goal: To create an easy-to-understand system that felt intuitive for a pet simulation environment.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="showcase-item">
+                <img src="MyBondlingPoop.gif" alt="Bathroom Needs and Cleanup" class="showcase-media">
+                <img src="MyBondlingEating.gif" alt="Feeding the Gooscuit" class="showcase-media">
+                <div class="showcase-description">
+                    <ul>
+                        <li>AI Autonomy: The Bondling's behavior is driven by AI logic for basic needs: the Gooscuit will poop, walk, and sleep autonomously.</li>
+                        <li>Player Responsibility: The player must utilize the interaction system to keep the house clean and the pet's belly full, responding to the AI's programmed needs.</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:joshwidby6@gmail.com" target="_blank">Email</a>
+                <a href="https://github.com/Otwo6" target="_blank">GitHub</a>
+                <a href="https://widby-games.itch.io/" target="_blank">Itch.io</a>
+                <a href="https://www.linkedin.com/in/josh-widby-8465b2256/" target="_blank">LinkedIn</a>
+            </div>
+            <p>&copy; 2025 Josh Widby</p>
+        </div>
+    </footer>
 </body>
 </html>
