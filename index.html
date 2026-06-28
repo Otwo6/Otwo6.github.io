@@ -1,709 +1,710 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Josh Widby</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        /* General Reset and Variables */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akin for the IE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Caveat:wght@600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --clay:#B5472E;       /* desert clay / mountain sunset */
+    --clay-dark:#8a3520;  /* darker clay for hover states */
+    --citrus:#F2A93B;     /* citrus gold — orange groves, sunshine */
+    --sage:#5B7553;       /* sage green — citrus leaves & foothills */
+    --alert:#C0392B;      /* dedicated warning red for required-field markers */
+    --night:#171310;      /* warm desert night, not pure black */
+    --ink:#1c1c1c;
+    --gray:#666;
+    --display:'Anton', sans-serif;
+    --heading:'Archivo Black', sans-serif;
+    --body:'PT Serif', Georgia, serif;
+    --script:'Caveat', cursive;
+  }
 
-        :root {
-			--primary: #673AB7; /* Sky Blue */
-			--primary-light: #9575CD;
-			--secondary: #FFC107; /* Bubblegum Pink Accent */
-			--text: #311B92; /* Deep Indigo */
-			--text-light: #5a667f; 
-			--bg: #FFFDE7; /* Near White/Cloud */
-			--bg-secondary: #F3E5F5; /* Pale Powder Blue */
-			--shadow-light: 0 5px 15px rgba(0, 0, 0, 0.1);
-			--shadow-deep: 0 15px 30px rgba(0, 0, 0, 0.2);
-			--font-title: 'Playfair Display', serif;
-			--font-body: 'Roboto', sans-serif;
-		}
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:var(--body); color:var(--ink); border-top:3px solid var(--night); background-color: #faf9f6; }
+  h1,h2,h3{ margin:0; font-family:var(--heading); }
+  p{ margin:0 0 1em 0; line-height:1.6; }
+  a{ color:inherit; }
+  
+  img{ 
+    max-width:100%; 
+    display:block; 
+    object-fit: cover; 
+    width: 100%;
+  }
 
-        body {
-            font-family: var(--font-body);
-            line-height: 1.7;
-            color: var(--text);
-            background: var(--bg);
-        }
+  .container{ max-width:1180px; margin:0 auto; padding:0 24px; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+  /* ---------- BACKGROUND IMAGE BLEND UTILITY ---------- */
+  .bg-blend {
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+  }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 4rem 0;
-            /* Dreamy Gradient: Twilight to Starry Night */
-            background: linear-gradient(145deg, #311B92 0%, #673AB7 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
+  .site-footer.bg-blend {
+    background-blend-mode: overlay; 
+  }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('stars.png'); /* Imaginary texture for depth */
-            opacity: 0.1;
-            pointer-events: none;
-        }
+  .hero.bg-blend{ background-image: url('Norco.jpg'); }
+  .donate-match.bg-blend{ background-image: url('LakeElsinore.png'); }
+  .endorsements.bg-blend{ background-image: url('SycamoreCanyonPark.jpg'); }
+  .site-footer.bg-blend{ background-image: url('CanyonLake.jpg'); }
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative; /* Keep content above pseudo-element */
-        }
+  /* ---------- generic placeholder ---------- */
+  .img-placeholder{
+    background:repeating-linear-gradient(45deg, #eeeeee, #eeeeee 12px, #e3e3e3 12px, #e3e3e3 24px);
+    border: none;
+    border-radius:16px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color:#8a8a8a;
+    font-family:var(--body);
+    font-style:italic;
+    font-size:0.95rem;
+    padding:1rem;
+    aspect-ratio: var(--ratio, 1/1);
+    width:100%;
+    overflow: hidden;
+  }
+  .img-placeholder.round{ border-radius:50%; }
 
-        .hero-text h1 {
-            font-family: var(--font-title);
-            font-size: 4rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            line-height: 1.1;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
+  .btn{
+    display:inline-block;
+    font-family:var(--heading);
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    text-decoration:none;
+    border-radius:50px;
+    padding:16px 38px;
+    cursor:pointer;
+    border:3px solid var(--sage);
+    transition: all 0.2s ease-in-out;
+  }
+  .btn-donate{
+    background:var(--citrus);
+    color:var(--clay);
+    box-shadow:6px 6px 0 var(--sage);
+  }
+  .btn-donate:hover{ transform:translate(2px,2px); box-shadow:4px 4px 0 var(--sage); }
 
-        .hero-text .tagline {
-            font-family: var(--font-title);
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--secondary);
-        }
+  /* ---------- TOP WHITE HEADER ---------- */
+  .top-header { background-color: #fff; padding: 20px 0; }
+  .logo-wrap{ text-align:center; }
+  .logo-image { margin: 0 auto; width: 25%; max-width: 380px; }
 
-        .hero-text .intro {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            max-width: 85%;
-        }
+  /* ---------- HERO ---------- */
+  .hero{ background-color:var(--clay); padding:0px 0; padding-top: 50px;}
+  .hero-content{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    position:relative;
+  }
+  .hero-text{ flex:1 1 480px; min-width:280px; }
+  .hero-text h2{
+    color:#fff;
+    font-size:clamp(1.7rem,3vw,2.5rem);
+    line-height:1.2;
+    margin-bottom:36px;
+  }
+  
+  .hero-photo{ 
+    flex:0 0 500px; 
+    --ratio:3/5; 
+    aspect-ratio: var(--ratio);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  }
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
+  @media (max-width:780px){
+    .hero-content{ flex-direction:column; }
+    .hero-photo{ flex:0 0 auto; width:80%; max-width:320px; box-shadow: -6px 6px 0 rgba(0, 0, 0, 0.15); }
+  }
 
-        .btn {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            border-radius: 2rem; /* Softer, custom shape */
-            text-decoration: none;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            cursor: pointer;
-            text-transform: uppercase;
-            box-shadow: var(--shadow-deep);
-        }
+  /* ---------- QUOTE + VIDEO ---------- */
+  .quote-video{ padding:80px 0; }
+  .two-col{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  @media (max-width:780px){ .two-col{ grid-template-columns:1fr; } }
 
-        .btn-primary {
-            background: var(--secondary);
-            color: var(--text);
-            border: none;
-        }
+  .quote{
+    margin:0;
+    border-left:3px solid var(--citrus);
+    border-bottom:3px solid var(--citrus);
+    border-radius:0 0 0 24px;
+    padding:30px 20px 30px 30px;
+    position:relative;
+    background: #fff;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.04);
+  }
+  .quote-mark{ font-family:var(--heading); color:var(--sage); font-size:2.6rem; line-height:1; display:block; }
+  .quote-mark.close{ text-align:right; }
+  .quote p{
+    font-family:var(--heading);
+    color:var(--clay);
+    font-size:1.4rem;
+    line-height:1.35;
+    text-align:center;
+    margin:6px 0;
+  }
 
-        .btn-primary:hover {
-            transform: scale(1.05) translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 183, 3, 0.4);
-        }
+  .video-placeholder{ --ratio:16/9; position:relative; background:#1a1a1a; border:none; border-radius:16px; overflow:hidden; text-decoration:none; box-shadow: 8px 8px 0 var(--sage); transition: transform 0.2s; display: block;}
+  .video-placeholder:hover { transform: translate(-2px, -2px); box-shadow: 10px 10px 0 var(--sage); }
+  .video-overlay{
+    position:absolute; inset:0;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding:24px;
+    background:linear-gradient(transparent 40%, rgba(0,0,0,.7));
+  }
+  .video-title{ color:#fff; font-family:var(--heading); font-size:1.5rem; margin-bottom:12px; line-height: 1.1; }
+  .video-title .script{ font-family:var(--script); color:var(--citrus); font-weight:600; font-size: 1.8rem;}
+  .watch-badge{
+    align-self:flex-start;
+    background:rgba(255,255,255,.95);
+    color:#1a1a1a;
+    font-family:var(--heading);
+    font-size:.8rem;
+    padding:8px 16px;
+    border-radius:30px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
 
-        .btn-secondary {
-            background: none;
-            color: white;
-            border: 3px solid white;
-            box-shadow: var(--shadow-light);
-        }
+  /* ---------- MEET SECTION ---------- */
+  .meet{ padding:30px 0 90px; }
+  .meet-photo{ 
+    --ratio:4/5; 
+    aspect-ratio: var(--ratio);
+    border-radius: 16px;
+    box-shadow: -8px 8px 0 var(--citrus);
+  }
+  .meet-text h2{ color:var(--clay); font-size:2.4rem; margin-bottom:20px; }
+  .meet-text p{ color:var(--ink); font-size: 1.05rem; }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: scale(1.02);
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
+  /* ---------- DONATE MATCH ---------- */
+  .donate-match{ background-color:var(--citrus); padding: 60px 0; }
+  .match-grid{ 
+    display:flex; 
+    max-width: 1000px; 
+    margin: 0 auto; 
+    background: #fff; 
+    border-radius: 24px; 
+    box-shadow: 12px 12px 0 var(--sage);
+    overflow: hidden;
+  }
+  @media (max-width:850px){ .match-grid{ flex-direction: column; } }
+  
+  .match-card{ flex: 1; padding:50px; background: #fff; }
+  .match-card h2{ color:var(--clay); font-size:2rem; line-height:1.15; margin-bottom:16px; }
+  .match-card p{ color:var(--ink); font-size:1.05rem; margin-bottom:28px; }
+  
+  .amount-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .amount{
+    font-family:var(--heading);
+    font-size:1rem;
+    padding:16px 0;
+    border:2px solid var(--clay);
+    border-radius:30px;
+    background:#fff;
+    color:var(--clay);
+    cursor:pointer;
+    transition: all 0.2s;
+  }
+  .amount.selected, .amount:hover{ background:var(--clay); color:#fff; transform: translateY(-2px); box-shadow: 0 4px 8px rgba(181, 71, 46, 0.2); }
+  
+  .match-photo{ 
+    flex: 1;
+    min-height: 400px; 
+    border-radius: 0; 
+    object-position: 15% 0%;  
+  }
+  @media (max-width:850px){ .match-photo{ min-height: 300px; } }
 
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  /* ---------- PLATFORM ---------- */
+  .platform{ padding:100px 0; }
+  .platform-grid{ display:grid; grid-template-columns:360px 1fr; gap:80px; padding-left:36px; }
+  @media (max-width:880px){ .platform-grid{ grid-template-columns:1fr; gap:40px; padding-left:0; } }
+  
+  .platform-frame{
+    border:3px solid var(--citrus);
+    border-right:none;
+    border-radius:28px 0 0 28px;
+    padding:40px 24px 40px 32px;
+    position:sticky;
+    top:40px;
+    background: #fff;
+    box-shadow: -8px 8px 0 rgba(242, 169, 59, 0.2);
+  }
+  @media (max-width:880px){ .platform-frame{ border:3px solid var(--citrus); border-radius: 24px; padding:30px; position:static; box-shadow: 6px 6px 0 rgba(242, 169, 59, 0.2); } }
+  
+  .eyebrow{ color:var(--sage); font-family:var(--heading); font-size:.9rem; text-transform: uppercase; letter-spacing:.1em; margin-bottom:12px; }
+  .platform-intro h2{ color:var(--clay); font-size:2.2rem; line-height:1.2; }
 
-		/* Hero Section - Arrow Styling & Animation */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: white;
-            font-size: 1rem;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            cursor: pointer;
-            z-index: 10;
-        }
+  .platform-item{ margin-bottom:56px; }
+  .platform-item h3{
+    color:var(--clay);
+    font-size:1.6rem;
+    display:flex; align-items:flex-start; gap:16px;
+    margin-bottom:16px;
+    line-height: 1.2;
+  }
+  .dot{ width:12px; height:12px; border-radius:50%; background:var(--citrus); flex:0 0 auto; margin-top: 6px;}
+  .platform-item p{ color:var(--ink); font-size:1.05rem; }
 
-        .scroll-indicator:hover {
-            opacity: 1;
-        }
+  /* ---------- ENDORSEMENTS ---------- */
+  .endorsements{ background-color:var(--clay); padding:90px 0; }
+  .endorsements h2{ color:#fff; text-align:center; font-size:2.6rem; margin-bottom:60px; }
+  .logo-grid{
+    display:grid;
+    grid-template-columns:repeat(3, minmax(140px,180px));
+    justify-content:center;
+    gap:40px;
+  }
+  @media (max-width:600px){ .logo-grid{ grid-template-columns:repeat(2,minmax(120px,160px)); gap: 20px;} }
+  .logo-circle{ --ratio:1/1; background:#fff; color:#a8a8b4; font-size:.9rem; box-shadow: 4px 4px 0 rgba(0,0,0,0.1); }
 
-        .scroll-indicator .arrow {
-            font-size: 3rem;
-            line-height: 1;
-            color: var(--secondary);
-            animation: float-down 2s ease-in-out infinite;
-        }
+  /* ---------- SUBSCRIBE ---------- */
+  .subscribe{ background:var(--citrus); padding:90px 0; display:flex; justify-content:center; }
+  .subscribe-card{
+    background:#fff;
+    box-shadow:10px 10px 0 var(--sage);
+    max-width:500px;
+    width:100%;
+    padding:50px;
+    margin:0 24px;
+    border-radius: 24px;
+  }
+  .subscribe-card h2{ color:var(--clay); font-size:2.2rem; margin-bottom:6px; }
+  .required-note{ text-align:right; font-size:.85rem; color:var(--gray); font-family:var(--body); margin-bottom:24px; }
+  .req{ color:var(--alert); }
+  form label{ display:block; font-family:var(--body); font-weight: bold; font-size:.95rem; margin:18px 0 8px; color: var(--ink); }
+  form input{
+    width:100%;
+    padding:14px 16px;
+    border:2px solid #e0e0e0;
+    border-radius:8px;
+    font-size:1rem;
+    font-family:var(--body);
+    transition: border-color 0.2s;
+  }
+  form input:focus{ outline:none; border-color:var(--clay); }
+  .btn-subscribe{
+    width:100%;
+    margin-top:32px;
+    background:var(--clay);
+    color:#fff;
+    border:none;
+    border-radius: 50px;
+    padding:18px 0;
+    text-align:center;
+    font-size:1.1rem;
+    font-family: var(--heading);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-subscribe:hover{ background:var(--clay-dark); transform: translateY(-2px); }
 
-        .scroll-indicator .text {
-            font-weight: 500;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.05em;
-        }
+  /* ---------- FOOTER ---------- */
+  .site-footer{ background-color:var(--night); color:#fff; padding:60px 0 40px; }
+  .social-row{ display:flex; justify-content:center; gap:20px; margin-bottom:40px; }
+  .icon-circle{
+    width:46px; height:46px; border-radius:50%;
+    background:#fff; color:#0a0a0a;
+    display:flex; align-items:center; justify-content:center;
+    text-decoration:none;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .icon-circle:hover { transform: translateY(-3px); background: var(--citrus); color: #fff; }
+  
+  /* --- CUSTOM DROPDOWN CSS --- */
+  .lang-dropdown-wrapper {
+    position: relative;
+    width: max-content;
+    margin: 0 auto 60px;
+  }
+  .lang-toggle {
+    display: flex; align-items: center; gap: 10px;
+    border: 2px solid #444; border-radius: 30px;
+    padding: 12px 24px; font-family: var(--heading); font-size: .85rem;
+    background: transparent; color: #fff; cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .lang-toggle:hover { border-color: #fff; }
+  .lang-menu {
+    position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+    background: #fff; color: var(--ink); list-style: none; padding: 8px 0;
+    margin: 0; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    overflow: hidden; min-width: 140px; z-index: 10;
+    opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+  }
+  .lang-menu.show { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(-4px); }
+  .lang-option {
+    width: 100%; padding: 12px 20px; border: none; background: transparent;
+    text-align: center; font-family: var(--heading); cursor: pointer; 
+    transition: background 0.2s; font-size: 0.9rem;
+  }
+  .lang-option:hover { background: #f4f4f4; color: var(--clay); }
 
-        /* Floating Animation */
-        @keyframes float-down {
-            0% {
-                transform: translateY(-5px);
-            }
-            50% {
-                transform: translateY(5px);
-            }
-            100% {
-                transform: translateY(-5px);
-            }
-        }
-
-        .profile-image {
-            width: 380px;
-            height: 380px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 10px solid var(--secondary); /* Golden border */
-            box-shadow: 0 0 0 10px rgba(255, 183, 3, 0.3), var(--shadow-deep);
-            transition: all 0.5s ease;
-        }
-
-        .profile-image:hover {
-            transform: rotate(5deg) scale(1.05);
-        }
-
-        /* Section Styles */
-        section {
-            padding: 6rem 0;
-        }
-
-        .section-title {
-            font-family: var(--font-title);
-            text-align: center;
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--primary);
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            font-size: 1.5rem;
-            width: 100%;
-            text-align: center;
-            margin: 1rem auto 0;
-            color: var(--secondary);
-        }
-
-        /* Projects Grid (Used for both Projects and Games) */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .project-card {
-            background: var(--bg);
-            border-radius: 1.5rem; /* Softer radius */
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            transition: all 0.4s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            border: 1px solid var(--bg-secondary);
-        }
-
-        .project-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px rgba(74, 65, 217, 0.25); /* Primary color glow */
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            /* Placeholder for project images - use a subtle gradient to look more refined */
-            background: linear-gradient(to right bottom, var(--primary-light), var(--primary)); 
-            border-bottom: 5px solid var(--secondary);
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-title {
-            font-family: var(--font-title);
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .project-meta {
-            font-style: italic;
-            font-size: 0.95rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        .project-description {
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-        }
-
-        .tag {
-            background: var(--bg-secondary);
-            padding: 0.35rem 1rem;
-            border-radius: 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--primary);
-            border: 1px solid var(--primary-light);
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 100%;
-            border-radius: 1rem;
-            box-shadow: var(--shadow-deep);
-            border: 5px solid var(--secondary);
-        }
-
-        .about-text {
-            color: var(--text-light);
-            line-height: 2;
-            font-size: 1.1rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text strong {
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-        }
-
-        .skill-category {
-            background: var(--bg);
-            padding: 2.5rem;
-            border-radius: 1.5rem;
-            text-align: center;
-            box-shadow: var(--shadow-light);
-            border: 2px solid var(--primary-light);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: scale(1.03);
-            background: var(--bg-secondary);
-        }
-
-        .skill-category h3 {
-            font-family: var(--font-title);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-            position: relative;
-        }
-
-        .skill-category h3::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            opacity: 0.3;
-        }
-
-        .skill-category ul {
-            list-style: none;
-        }
-
-        .skill-category li {
-            padding: 0.75rem 0;
-            color: var(--text);
-            font-weight: 500;
-            border-bottom: 1px dashed var(--bg-secondary);
-        }
-        
-        .skill-category li:last-child {
-            border-bottom: none;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text); /* Darker blue/gray for contrast */
-            color: white;
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
-            position: relative;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 100%;
-            height: 2px;
-            background: var(--secondary);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .footer-links a:hover::after {
-            transform: scaleX(1);
-        }
-
-        /* Responsive */
-        @media (max-width: 960px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h1 {
-                font-size: 3rem;
-            }
-
-            .hero-text .tagline {
-                font-size: 1.5rem;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .profile-image {
-                width: 280px;
-                height: 280px;
-                margin-top: 3rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .about-image {
-                max-width: 80%;
-                margin: 0 auto;
-            }
-        }
-    </style>
+  .footer-bottom{
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:30px;
+    border-top:1px solid #333; padding-top:30px;
+    font-size:.9rem; color:#999;
+  }
+  .footer-bottom a{ color:#fff; text-decoration:none; border-bottom: 1px solid #fff; padding-bottom: 2px;}
+  .footer-bottom a:hover { color: var(--citrus); border-color: var(--citrus); }
+  .paid-for{
+    display:inline-block;
+    border:1px solid #555;
+    padding:10px 16px;
+    font-family:var(--heading);
+    font-size:.75rem;
+    margin-top:16px;
+    color:#ccc;
+    letter-spacing: 0.05em;
+  }
+  .footer-right{ text-align:right; }
+  .footer-right p{ margin:0 0 8px; }
+  @media (max-width:600px){ .footer-bottom{ flex-direction:column; text-align:left; } .footer-right{ text-align:left; } }
+</style>
 </head>
 <body>
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>I'm <span style="color: var(--secondary);">Josh Widby</span></h1>
-                    <p class="tagline">Systems Designer & Programmer</p>
-                    <p class="intro">I grew up loving and playing video games. Now I am driven to give back to the industry that raised me by crafting the best experiences for players today.</p>
-                    <div class="hero-buttons">
-                        <a href="#games" class="btn btn-primary">View My Projects</a>
-                        <a href="JoshWidby_Resume.pdf" class="btn btn-secondary" target="_blank">My Resume</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="WebsitePortrait.png" alt="Profile Photo" class="profile-image">
-                </div>
-            </div>
+
+  <!-- NEW WHITE HEADER -->
+  <div class="top-header">
+    <div class="container">
+      <div class="logo-wrap">
+        <img class="logo-image" src="AkinLogo6.png" alt="Akin for the IE">
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO (First Orange Area - With Image Blend) -->
+  <header class="hero bg-blend" data-speed="0.5">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h2 id="t-hero">Kevin Akin is running for State Assembly to lower the cost of living for working families across the Inland Empire.</h2>
+          <a href="#subscribe" class="btn btn-donate" id="t-donate-btn">Donate</a>
         </div>
-		<a href="#games" class="scroll-indicator" aria-label="Scroll down to projects">
-            <span class="arrow">↓</span>
+        <img class="hero-photo" src="Picture1.png" alt="Kevin Akin">
+      </div>
+    </div>
+  </header>
+
+  <!-- QUOTE + VIDEO -->
+  <section class="quote-video">
+    <div class="container two-col">
+      <blockquote class="quote">
+        <span class="quote-mark open">&ldquo;</span>
+        <p id="t-quote">The very wealthy already have plenty of representation in Sacramento and Washington. The working majority in this district deserves a representative in the legislature who puts their needs first.</p>
+        <span class="quote-mark close">&rdquo;</span>
+      </blockquote>
+      <a class="video-placeholder" href="https://www.youtube.com/watch?v=REPLACE_WITH_YOUR_VIDEO_ID" target="_blank" rel="noopener">
+        <div class="img-placeholder" style="border-radius: 0; height: 100%;"><span>Video Thumbnail</span></div>
+        <div class="video-overlay">
+          <p class="video-title">Kevin Akin <span class="script">for</span><br>the Inland Empire</p>
+          <span class="watch-badge">&#9658; Watch on YouTube</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- MEET SECTION -->
+  <section class="meet">
+    <div class="container two-col">
+      <img class="meet-photo" src="DeliveringBooks.jpg" alt="Kevin delivering books">
+      <div class="meet-text">
+        <h2 id="t-meet">Meet Kevin</h2>
+        <p>Kevin Akin is a lifelong Riverside resident running for State Assembly to fight for the Inland Empire community his family has called home for nearly 90 years. Raised in a large, working-class family, Akin understands the financial strains facing local households. Before running for office, he spent decades in the local workforce—serving five years as a carpenter, 10 years as a steelworker, and over 20 years as a hospital steam engineer until his retirement. Alongside his wife, Dr. Margie Akin, a UCR-educated anthropologist, Kevin has deeply rooted his life in the University City neighborhood, raising four children and five grandchildren while remaining heavily involved in local community service.</p>
+        <p>Akin's candidacy is built on a foundation of deep civic engagement and a lifetime of public advocacy. An avid local historian, community volunteer, and dedicated environmental advocate, he has spent his life working to better the region—from leading local street cleanups to volunteering hundreds of hours documenting local history and preserving access to books. His lived experiences fuel a platform focused on practical, working-class solutions: lowering the cost of living for families, protecting the region's agricultural heritage by fighting destructive pests, and fostering the kind of tolerance and mutual support that keeps communities whole.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE / MATCH (First Yellow Area - With Image Blend) -->
+  <section class="donate-match bg-blend" id="donate" data-speed="0.5">
+    <div class="match-grid">
+      <div class="match-card">
+        <h2 id="t-match">Make your donation go further</h2>
+        <p id="t-match-p">Kevin Akin doesn't accept corporate, LLC, or PAC money &mdash; this campaign runs on small donations from people across the Inland Empire.</p>
+        <div class="amount-grid">
+          <button class="amount">$25</button>
+          <button class="amount">$100</button>
+          <button class="amount">$250</button>
+          <button class="amount">$500</button>
+          <button class="amount">$1,000</button>
+          <button class="amount selected" id="t-other">Other</button>
+        </div>
+      </div>
+      <img class="match-photo" src="KevinWithStreetCleanupVolunteersCrop.jpg" alt="Kevin with volunteers">
+    </div>
+  </section>
+
+  <!-- PLATFORM -->
+  <section class="platform">
+    <div class="container platform-grid">
+      <div class="platform-intro">
+        <div class="platform-frame">
+          <p class="eyebrow" id="t-plat-eye">The Platform</p>
+          <h2 id="t-plat-head">The Inland Empire works hard but can't afford to live here. Kevin Akin has a plan to change that.</h2>
+        </div>
+      </div>
+      <div class="platform-items">
+        <div class="platform-item">
+          <h3 id="t-plat-1"><span class="dot"></span>Kick Corporate Money Out of Sacramento</h3>
+          <p>Special interests and corporate PACs spend millions to buy influence in the state legislature, resulting in laws that benefit billionaire corporations instead of working families.</p>
+          <p>Kevin Akin does not and will not accept a single dime of corporate PAC money. He will push to sharply limit the power of independent expenditure committees and ensure Sacramento answerable to the people, not wealthy donors.</p>
+        </div>
+        <div class="platform-item">
+          <h3 id="t-plat-2"><span class="dot"></span>Shift the Tax Burden Off Working Families</h3>
+          <p>From sales and property taxes to income taxes, the current tax system falls far too heavily on working people and the poor while billionaires get a free pass.</p>
+          <p>Kevin Akin will fight to restructure state and local tax laws to shift the burden away from the working class and onto the very wealthy. He believes those who benefit the most from our economy should pay their fair share to fund essential public services.</p>
+        </div>
+        <div class="platform-item">
+          <h3 id="t-plat-3"><span class="dot"></span>Stand Up to Corruption and Defense of Democracy</h3>
+          <p>Sacramento needs leaders who have the backbone to call out political corruption and authoritarian threats to our country, rather than falling in line behind a would-be dictator in Washington.</p>
+          <p>As a lifelong historian, Kevin Akin knows that holding power accountable is vital to a healthy society. He will be an uncompromising voice for democratic values, transparency, and a government that serves everyday citizens rather than corrupt political elites.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENDORSEMENTS (Second Orange Area - With Image Blend) -->
+  <section class="endorsements bg-blend" data-speed="0.5">
+    <div class="container">
+      <h2 id="t-endorsements">Endorsements</h2>
+      <div class="logo-grid">
+        <div class="logo-circle img-placeholder round"><span>Org logo</span></div>
+        <div class="logo-circle img-placeholder round"><span>Org logo</span></div>
+        <div class="logo-circle img-placeholder round"><span>Org logo</span></div>
+        <div class="logo-circle img-placeholder round"><span>Org logo</span></div>
+        <div class="logo-circle img-placeholder round"><span>Org logo</span></div>
+        <div class="logo-circle img-placeholder round"><span>Org logo</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUBSCRIBE -->
+  <section class="subscribe" id="subscribe">
+    <div class="subscribe-card">
+      <h2 id="t-subscribe">Subscribe</h2>
+      <p class="required-note"><span class="req">*</span> <span id="t-req-note">indicates required</span></p>
+      <form onsubmit="event.preventDefault(); this.querySelector('.btn-subscribe').textContent='Thanks for signing up!';">
+        <label><span id="t-email">Email Address</span> <span class="req">*</span></label>
+        <input type="email" required>
+        <label id="t-fname">First Name</label>
+        <input type="text">
+        <label id="t-lname">Last Name</label>
+        <input type="text">
+        <label id="t-phone">Phone Number</label>
+        <input type="tel">
+        <label><span id="t-zip">Zip code</span> <span class="req">*</span></label>
+        <input type="text" required>
+        <button type="submit" class="btn btn-subscribe" id="t-sub-btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER (Bottom Brown Area - With Image Blend) -->
+  <footer class="site-footer bg-blend" data-speed="0.4">
+    <div class="container">
+      <div class="social-row">
+        <!-- Facebook SVG -->
+        <a class="icon-circle" href="#" aria-label="Facebook">
+          <svg viewBox="0 0 320 512" width="20" height="20" fill="currentColor"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/></svg>
         </a>
-    </section>
+        <!-- Instagram SVG -->
+        <a class="icon-circle" href="#" aria-label="Instagram">
+          <svg viewBox="0 0 448 512" width="22" height="22" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+        </a>
+        <!-- Tumblr SVG -->
+        <a class="icon-circle" href="#" aria-label="Tumblr">
+          <svg viewBox="0 0 320 512" width="20" height="20" fill="currentColor"><path d="M309.8 480.3c-13.6 14.5-50 31.7-97.4 31.7-120.8 0-147.1-88.8-147.1-140.8v-144H17V112.5c52.3-27.6 71.6-104.1 73.9-112.5h84.6v115.6h109.8v111.5h-109.8v131.5c0 23.3 6.9 41.5 39.5 41.5 24 0 42.1-13.8 51.5-23.7l40.4 104z"/></svg>
+        </a>
+        <!-- X SVG -->
+        <a class="icon-circle" href="#" aria-label="X / Twitter">
+          <svg viewBox="0 0 512 512" width="20" height="20" fill="currentColor"><path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L273 180.6 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+        </a>
+      </div>
 
-    <section id="games">
-        <div class="container">
-            <h2 class="section-title">My Games</h2>
-            <div class="projects-grid">
-                <a href="PortfolioClippedWings.html" class="project-card">
-                    <img src="ClippedWingsPFP.png" alt="Clipped Wings" class="project-image">
-                    <div class="project-content">
-                        <h3 class="project-title">Clipped Wings</h3>
-                        <p class="project-meta">Genre: 3D Puzzle Platformer | Engine: Unity (C#) | Team Size: 1</p>
-                        <p class="project-description">I was given five months to make a game that showcased a positive mental health. I created a
-                            3D puzzle-platformer showcasing a blue jay going through the five stages of grief. I was the sole developer, 
-                            focused on designing all the levels, all of the mechanics, and the implementation.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">C#</span>
-                            <span class="tag">Solo Dev</span>
-                            <span class="tag">Game Design</span>
-                        </div>
-                    </div>
-                </a>
+      <!-- Functional Custom Dropdown -->
+      <div class="lang-dropdown-wrapper">
+        <button class="lang-toggle" type="button" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          &#127760; <span id="currentLang">English</span> &#8964;
+        </button>
+        <ul class="lang-menu" id="langMenu" role="menu">
+          <li><button class="lang-option" data-value="en" role="menuitem">English</button></li>
+          <li><button class="lang-option" data-value="es" role="menuitem">Español</button></li>
+        </ul>
+      </div>
 
-                <a href="PortfolioLeo.html" class="project-card">
-                    <img src="LeoPFP.png" alt="Leo Saves the Swamp" class="project-image" style="background: #2a6a1a;">
-                    <div class="project-content">
-                        <h3 class="project-title">Leo Saves the Swamp</h3>
-                        <p class="project-meta">Genre: 3D Foddian Platformer | Engine: Unreal Engine 4 | Team Size: 3</p>
-                        <p class="project-description">Developed in a 2-week game jam, this Foddian game (designed with difficult, unique movement controls) stars a frog named Leo saving his swamp. I led the team, designed/programmed mechanics, and created the level layout.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unreal Engine 4</span>
-                            <span class="tag">Team Leader</span>
-                            <span class="tag">Game Jam</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="PortfolioPongLeague.html" class="project-card">
-                    <img src="PongLeaguePFP.png" alt="Pong League" class="project-image" style="background: #731e9c;">
-                    <div class="project-content">
-                        <h3 class="project-title">Pong League</h3>
-                        <p class="project-meta">Genre: Sports/Arcade | Engine: Unreal Engine 5 | Team Size: 1</p>
-                        <p class="project-description">An evolution of the classic Pong, taking inspiration from Rocket League and top-down shooters. I designed, modeled, and developed this fictional sport in a week as a personal challenge.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unreal Engine 5</span>
-                            <span class="tag">Solo Dev</span>
-                            <span class="tag">3D Modeling</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="PortfolioIndianaSawyer.html" class="project-card">
-                    <img src="IndianaSawyerPFP.png" alt="Indiana Sawyer" class="project-image" style="background: #a8794c;">
-                    <div class="project-content">
-                        <h3 class="project-title">Indiana Sawyer</h3>
-                        <p class="project-meta">Genre: 2D Puzzle-Platformer | Engine: Unity | Team Size: 1</p>
-                        <p class="project-description">A 2D platformer developed in 48 hours for a game jam. The player controls an Indiana Jones-like character exploring a cave. I was the sole developer, creating the player controller, interaction system, and level design.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unity</span>
-                            <span class="tag">Game Jam</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="PortfolioGooscuit.html" class="project-card">
-                    <img src="MyBondlingPFP.png" alt="My Bondling - Gooscuit" class="project-image" style="background: #ff6f61;">
-                    <div class="project-content">
-                        <h3 class="project-title">My Bondling - Gooscuit</h3>
-                        <p class="project-meta">Genre: Pet-Simulation | Engine: Unreal Engine 5 | Team Size: 2</p>
-                        <p class="project-description">A collaboration with an art student to bring his dream pet-simulation game to life. My friend created all the art, and I scoped and programmed all the desired game mechanics for the fictional pet, a 'Gooscuit'.</p>
-                        <div class="project-tags">
-                            <span class="tag">Unreal Engine 5</span>
-                            <span class="tag">Collaborative</span>
-                        </div>
-                    </div>
-                </a>
-                
-                <a href="PortfolioValorantAgent.html" class="project-card">
-                    <img src="ValorantAgentPFP.png" alt="Custom Valorant Agent 27 Design Document" class="project-image" style="background: #ff4655;">
-                    <div class="project-content">
-                        <h3 class="project-title">Custom Valorant Agent Design</h3>
-                        <p class="project-meta">Discipline: Game Design Document | Tools: Google Docs + Photoshop | Team Size: 1</p>
-                        <p class="project-description">A personal challenge and practice exercise to create an in-depth character mechanic design document for a custom agent (Agent 27) for the tactical FPS game, Valorant.</p>
-                        <div class="project-tags">
-                            <span class="tag">Game Design</span>
-                            <span class="tag">Solo Project</span>
-                            <span class="tag">Documentation</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+      <div class="footer-bottom">
+        <div class="footer-left">
+          <p>For press inquiries, please contact <a href="mailto:press@example.com">kevin@kevinakin4california.org</a></p>
+          <span class="paid-for">PAID FOR BY Kevin Akin for California</span>
         </div>
-    </section>
-
-    <section id="projects" style="background: var(--bg-secondary);">
-        <div class="container">
-            <h2 class="section-title">My Projects</h2>
-            <div class="projects-grid">
-                <a href="LoadedLanguage.html" class="project-card">
-                    <img src="LoadedLanguageLogo.png" alt="Loaded Language Finder" class="project-image" style="background: #90b8ff;">
-                    <div class="project-content">
-                        <h3 class="project-title">Loaded Language Finder</h3>
-                        <p class="project-meta">Discipline: Web Extension, AI/NLP | Team Size: 1</p>
-                        <p class="project-description">A Google Chrome Extension that takes user-inputted text and provides a rewritten sentence without loaded language, giving a percentage score and detailed explanations for identified loaded words.</p>
-                        <div class="project-tags">
-                            <span class="tag">Javascript</span>
-                            <span class="tag">HTML/CSS</span>
-                            <span class="tag">AI/NLP</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="PortfolioKnule.html" class="project-card">
-                    <img src="KnulePFP.png" alt="Knule Social Media" class="project-image" style="background: #6a62e8;">
-                    <div class="project-content">
-                        <h3 class="project-title">Knule Social Media</h3>
-                        <p class="project-meta">Discipline: Full Stack Development | Database: MongoDB/NoSQL | Team Size: 5</p>
-                        <p class="project-description">Developed as part of a software engineering course at CPP, this functional social media website includes features like profile creation/editing, text/image posts, commenting, and following functionality.</p>
-                        <div class="project-tags">
-                            <span class="tag">Javascript</span>
-                            <span class="tag">Full Stack</span>
-                            <span class="tag">MongoDB</span>
-                        </div>
-                    </div>
-                </a>
-
-                <a href="index.html" class="project-card">
-                    <img src="JoshWidbyPFP.png" alt="joshwidby.com" class="project-image" style="background: #ffb703;">
-                    <div class="project-content">
-                        <h3 class="project-title">joshwidby.com (This Website)</h3>
-                        <p class="project-meta">Discipline: Web Development | Team Size: 1</p>
-                        <p class="project-description">This website was developed to clearly showcase my experience as a game and software developer. It was designed to clearly present both my professional projects and my personal creative personality.</p>
-                        <div class="project-tags">
-                            <span class="tag">HTML</span>
-                            <span class="tag">CSS</span>
-                            <span class="tag">Web Design</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
+        <div class="footer-right">
+          <p>Photography by MUST REPLACE AND UPDATE</p>
+          <p>Designed and built by Josh Widby</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </footer>
 
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title">A Little About Me</h2>
-            <div class="about-content">
-                <img src="PFP.jpg" alt="About Me" class="about-image">
-                <div class="about-text">
-                    <p>I am a third-year Computer Science student currently attending <span class="background__bold">California State Polytechnic University, Pomona</span>, based in Corona, California.</p>
-                    <p>My passion is creating living, breathing worlds in video games. I love the intense nature of game jams, constantly refining my craft as a programmer, game designer and team leader.</p>
-                    <p>I truly love working on games, crafting stories and experiences. This love for games led to me learning programming and game development, which led to an equal passion for creating them.</p>
-                    <p>Right now, I am either studying, playing games, working out, or saving up money to go to Disneyland again.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <script>
+    // ---- Donation Button Logic ----
+    document.querySelectorAll('.amount').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.amount').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
 
-    <section id="skills" style="background: var(--bg-secondary);">
-        <div class="container">
-            <h2 class="section-title">Skills & Tools</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <ul>
-                        <li>Java</li>
-                        <li>C#</li>
-                        <li>C++</li>
-                        <li>Javascript</li>
-                        <li>HTML5/CSS</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Software</h3>
-                    <ul>
-                        <li>Unity</li>
-                        <li>Unreal Engine 4/5</li>
-                        <li>Blender</li>
-                        <li>Adobe Photoshop</li>
-                        <li>Adobe Illustrator</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools</h3>
-                    <ul>
-                        <li>Git & GitHub</li>
-                        <li>Microsoft Excel</li>
-                        <li>Microsoft Word</li>
-                        <li>Trello</li>
-                        <li>Milanote</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    // ---- Language Dropdown UI & Live Translation Logic ----
+    const langBtn = document.getElementById('langBtn');
+    const langMenu = document.getElementById('langMenu');
+    const currentLangSpan = document.getElementById('currentLang');
+    const langOptions = document.querySelectorAll('.lang-option');
 
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="mailto:joshwidby6@gmail.com" target="_blank">Email</a>
-                <a href="https://github.com/Otwo6" target="_blank">GitHub</a>
-                <a href="https://widby-games.itch.io/" target="_blank">Itch.io</a>
-                <a href="https://www.linkedin.com/in/josh-widby-8465b2256/" target="_blank">LinkedIn</a>
-            </div>
-            <p>&copy; 2025 Josh Widby</p>
-        </div>
-    </footer>
+    // Toggle menu
+    langBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      langMenu.classList.toggle('show');
+      langBtn.setAttribute('aria-expanded', langMenu.classList.contains('show'));
+    });
+
+    // Close on outside click
+    document.addEventListener('click', () => {
+      langMenu.classList.remove('show');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+
+    // Dictionary for the primary UI elements
+    const translations = {
+      en: {
+        hero: "Kevin Akin is running for State Assembly to lower the cost of living for working families across the Inland Empire.",
+        donateBtn: "Donate",
+        quote: "The very wealthy already have plenty of representation in Sacramento and Washington. The working majority in this district deserves a representative in the legislature who puts their needs first.",
+        meet: "Meet Kevin",
+        matchHead: "Make your donation go further",
+        matchP: "Kevin Akin doesn't accept corporate, LLC, or PAC money — this campaign runs on small donations from people across the Inland Empire.",
+        other: "Other",
+        platEye: "The Platform",
+        platHead: "The Inland Empire works hard but can't afford to live here. Kevin Akin has a plan to change that.",
+        plat1: "Kick Corporate Money Out of Sacramento",
+        plat2: "Shift the Tax Burden Off Working Families",
+        plat3: "Stand Up to Corruption and Defense of Democracy",
+        endorse: "Endorsements",
+        sub: "Subscribe",
+        reqNote: "indicates required",
+        email: "Email Address",
+        fname: "First Name",
+        lname: "Last Name",
+        phone: "Phone Number",
+        zip: "Zip code"
+      },
+      es: {
+        hero: "Kevin Akin se postula para la Asamblea Estatal para reducir el costo de vida de las familias trabajadoras de todo el Inland Empire.",
+        donateBtn: "Donar",
+        quote: "Los muy ricos ya tienen mucha representación en Sacramento y Washington. La mayoría trabajadora de este distrito merece un representante que ponga sus necesidades primero.",
+        meet: "Conoce a Kevin",
+        matchHead: "Haz que tu donación rinda más",
+        matchP: "Kevin Akin no acepta dinero corporativo, de LLC o de PAC — esta campaña se financia con pequeñas donaciones de la gente del Inland Empire.",
+        other: "Otro",
+        platEye: "La Plataforma",
+        platHead: "El Inland Empire trabaja duro pero no puede permitirse vivir aquí. Kevin Akin tiene un plan para cambiar eso.",
+        plat1: "Expulsar el dinero corporativo de Sacramento",
+        plat2: "Quitar la carga fiscal a las familias trabajadoras",
+        plat3: "Enfrentar la corrupción y defender la democracia",
+        endorse: "Respaldos",
+        sub: "Suscribirse",
+        reqNote: "indica campo requerido",
+        email: "Correo Electrónico",
+        fname: "Nombre",
+        lname: "Apellido",
+        phone: "Número de Teléfono",
+        zip: "Código Postal"
+      }
+    };
+
+    // Apply translations
+    langOptions.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const lang = e.target.dataset.value;
+        currentLangSpan.textContent = e.target.textContent;
+        
+        const t = translations[lang];
+        if(t) {
+          document.getElementById('t-hero').textContent = t.hero;
+          document.getElementById('t-donate-btn').textContent = t.donateBtn;
+          document.getElementById('t-quote').textContent = t.quote;
+          document.getElementById('t-meet').textContent = t.meet;
+          document.getElementById('t-match').textContent = t.matchHead;
+          document.getElementById('t-match-p').innerHTML = t.matchP;
+          document.getElementById('t-other').textContent = t.other;
+          document.getElementById('t-plat-eye').textContent = t.platEye;
+          document.getElementById('t-plat-head').textContent = t.platHead;
+          document.getElementById('t-plat-1').innerHTML = `<span class="dot"></span>` + t.plat1;
+          document.getElementById('t-plat-2').innerHTML = `<span class="dot"></span>` + t.plat2;
+          document.getElementById('t-plat-3').innerHTML = `<span class="dot"></span>` + t.plat3;
+          document.getElementById('t-endorsements').textContent = t.endorse;
+          document.getElementById('t-subscribe').textContent = t.sub;
+          document.getElementById('t-req-note').textContent = t.reqNote;
+          document.getElementById('t-email').textContent = t.email;
+          document.getElementById('t-fname').textContent = t.fname;
+          document.getElementById('t-lname').textContent = t.lname;
+          document.getElementById('t-phone').textContent = t.phone;
+          document.getElementById('t-zip').textContent = t.zip;
+          document.getElementById('t-sub-btn').textContent = t.sub;
+        }
+      });
+    });
+
+    // ---- Parallax: subtle scroll-linked motion for the full-bleed background-blend sections ----
+    (function () {
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) return;
+
+      var bgItems = Array.prototype.slice.call(document.querySelectorAll('.bg-blend')).map(function (el) {
+        var speed = parseFloat(el.dataset.speed);
+        return { el: el, speed: isNaN(speed) ? 0.4 : speed };
+      });
+
+      var ticking = false;
+
+      function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+      function update() {
+        var vh = window.innerHeight;
+
+        bgItems.forEach(function (item) {
+          var rect = item.el.getBoundingClientRect();
+          var center = rect.top + rect.height / 2;
+          var progress = clamp((center - vh / 2) / (vh / 2 + rect.height / 2), -1, 1);
+          var posPercent = 50 + progress * 15 * item.speed;
+          item.el.style.backgroundPositionY = posPercent.toFixed(1) + '%';
+        });
+
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+      update();
+    })();
+  </script>
 </body>
 </html>
