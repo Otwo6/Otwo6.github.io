@@ -96,6 +96,10 @@
   .top-header { background-color: #fff; padding: 20px 0; }
   .logo-wrap{ text-align:center; }
   .logo-image { margin: 0 auto; width: 25%; max-width: 380px; }
+  
+  @media (max-width:780px){
+    .logo-image { width: 75%; } /* Increased logo size for mobile */
+  }
 
   /* ---------- HERO ---------- */
   .hero{ background-color:var(--clay); padding:0px 0; padding-top: 50px;}
@@ -227,12 +231,17 @@
   /* ---------- PLATFORM ---------- */
   .platform{ padding:100px 0; }
   .platform-grid{ display:grid; grid-template-columns:360px 1fr; gap:80px; padding-left:36px; }
+  
+  /* Adjusted mobile spacing to pull items off the edge */
   @media (max-width:880px){ 
     .platform-grid { 
       grid-template-columns:1fr; 
       gap:40px; 
-      padding-left:24px;
+      padding-left:0;
     } 
+    .platform-items {
+      padding: 0 20px; 
+    }
   }
   
   .platform-frame{
