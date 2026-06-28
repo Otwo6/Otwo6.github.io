@@ -227,7 +227,13 @@
   /* ---------- PLATFORM ---------- */
   .platform{ padding:100px 0; }
   .platform-grid{ display:grid; grid-template-columns:360px 1fr; gap:80px; padding-left:36px; }
-  @media (max-width:880px){ .platform-grid{ grid-template-columns:1fr; gap:40px; padding-left:0; } }
+  @media (max-width:880px){ 
+    .platform-grid { 
+      grid-template-columns:1fr; 
+      gap:40px; 
+      padding-left:24px;
+    } 
+  }
   
   .platform-frame{
     border:3px solid var(--citrus);
