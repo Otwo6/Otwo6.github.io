@@ -1,0 +1,114 @@
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+/* Main Content & Text */
+.contact-page main { padding: 56px 0 40px; }
+.contact-page .content-wrap { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+.contact-page .content-wrap h2 { font-size: clamp(24px, 3vw, 32px); color: var(--indigo); margin-bottom: 22px; }
+.contact-page .content-wrap p { font-size: 15.5px; margin-bottom: 16px; color: #3a3733; }
+.contact-page .content-wrap a.inline-link { color: var(--red); font-weight: 600; border-bottom: 1px solid var(--red-light); }
+.contact-page .content-wrap a.inline-link:hover { color: var(--indigo); border-color: var(--indigo); }
+
+/* Section Divider */
+.contact-page .section-divider { 
+  max-width: 900px; 
+  margin: 32px auto; 
+  padding: 0 28px; 
+  display: flex; 
+}
+.contact-page .section-divider .rule { 
+  flex: 1;
+  height: 33px;
+  align-self: flex-end;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='44' viewBox='0 0 160 44'%3E%3Cg%3E%3Cellipse cx='20' cy='16' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M20 16 L30 12 L30 20 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='60' cy='36' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M60 36 L70 32 L70 40 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='100' cy='6' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M100 6 L110 2 L110 10 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='140' cy='26' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M140 26 L150 22 L150 30 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 120px 33px;
+}
+
+/* Grid & List Styles */
+.contact-page .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 32px; }
+.contact-page .contact-grid h3 { font-size: 18px; color: var(--indigo); margin-bottom: 14px; }
+.contact-page .contact-grid ul { list-style: none; margin-bottom: 26px; }
+.contact-page .contact-grid li { font-size: 14.5px; padding: 7px 0 7px 18px; position: relative; color: #3a3733; line-height: 1.5; }
+.contact-page .contact-grid li::before { content: ""; position: absolute; left: 0; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+.contact-page .contact-grid li strong { color: var(--charcoal); font-weight: 600; display: block; margin-bottom: 2px;}
+.contact-page .contact-grid li a { color: var(--indigo); font-weight: 600; overflow-wrap: anywhere; word-break: break-word;}
+.contact-page .contact-grid li a:hover { color: var(--red); }
+
+/* Form Styles */
+.contact-form {
+  background: #fcfcfc;
+  border: 1px solid var(--line, #e2e2e2);
+  padding: 24px;
+  border-radius: 8px;
+}
+.form-group {
+  margin-bottom: 16px;
+}
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--indigo);
+  margin-bottom: 6px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 15px;
+  background-color: #fff;
+  color: #333;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--indigo);
+  box-shadow: 0 0 0 2px rgba(var(--indigo-rgb, 44, 62, 80), 0.2);
+}
+.submit-btn {
+  background-color: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+.submit-btn:hover {
+  background-color: #a81a24; /* Darker red */
+}
+
+/* Mailing Box */
+.contact-page .mailing-box {
+  background: var(--cream-deep, #f5f3ef); 
+  border: 1px solid var(--line, #e2e2e2); 
+  border-radius: 8px; 
+  padding: 24px; 
+  font-size: 15.5px;
+  line-height: 1.6;
+}
+.contact-page .mailing-box strong {
+  display: block;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+.contact-page .mailing-box p {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .contact-page .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+#emails, #mailing {
+  scroll-margin-top: 140px;
+}

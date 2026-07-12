@@ -1,0 +1,64 @@
+/* src/pages/Events.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+.events-page main { max-width: 1180px; margin: 0 auto; padding: 44px 28px 80px; }
+
+/* Toolbar */
+.events-page .toolbar { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; }
+.events-page .search-box { flex: 1; min-width: 220px; display: flex; align-items: center; gap: 10px; color: #8a8580; }
+.events-page .search-box input { flex: 1; border: none; outline: none; font-size: 15px; color: var(--charcoal); background: transparent; }
+.events-page .toolbar-actions { display: flex; align-items: center; gap: 10px; }
+.events-page .view-toggle { display: flex; gap: 18px; font-weight: 600; font-size: 14.5px; }
+.events-page .view-toggle button { background: none; border: none; cursor: pointer; padding: 4px 2px; color: #8a8580; border-bottom: 2px solid transparent; }
+.events-page .view-toggle button.active { color: var(--indigo); border-color: var(--red); }
+
+/* Month Nav */
+.events-page .month-nav { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+.events-page .month-nav .arrow { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 16px; color: var(--indigo); }
+.events-page .month-nav .arrow:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.events-page .month-nav .today-btn { padding: 9px 16px; border-radius: var(--radius); border: 1px solid var(--line); background: #fff; font-weight: 600; font-size: 13.5px; cursor: pointer; }
+.events-page .month-nav .today-btn:hover { border-color: var(--red); color: var(--red); }
+.events-page .month-nav .month-label { font-size: 26px; font-weight: 600; color: var(--indigo); }
+
+/* Calendar Grid */
+.events-page .calendar { background: #fff; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.events-page .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); background: var(--indigo); color: #fff; }
+.events-page .cal-weekdays div { padding: 10px 12px; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.events-page .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); }
+.events-page .cal-cell { min-height: 112px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px; position: relative; }
+.events-page .cal-cell:nth-child(7n) { border-right: none; }
+.events-page .cal-cell.outside { background: var(--cream-deep); }
+.events-page .cal-cell.outside .cal-daynum { color: #b8b2a6; }
+.events-page .cal-cell.today { background: #FFF6E9; }
+.events-page .cal-daynum { font-size: 13.5px; font-weight: 700; color: var(--charcoal); margin-bottom: 6px; }
+.events-page .cal-cell.today .cal-daynum { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--red); color: #fff; }
+.events-page .cal-event { font-size: 11.5px; line-height: 1.3; padding: 4px 6px; border-radius: 3px; margin-bottom: 4px; background: var(--cream-deep); color: var(--indigo); cursor: pointer; font-weight: 600; }
+.events-page .cal-event:hover { background: var(--gold); }
+.events-page .cal-event.featured { background: var(--indigo); color: #fff; }
+.events-page .cal-event .ev-time { font-weight: 700; opacity: .85; margin-right: 3px; }
+
+/* List View */
+.events-page .list-item { display: flex; gap: 20px; padding: 18px 20px; background: #fff; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 14px; align-items: flex-start; }
+.events-page .list-date { flex-shrink: 0; width: 66px; text-align: center; background: var(--indigo); color: #fff; border-radius: 6px; padding: 10px 4px; }
+.events-page .list-date .dow { font-size: 11px; text-transform: uppercase; letter-spacing: .05em; opacity: .8; }
+.events-page .list-date .dnum { font-size: 22px; font-weight: 700; }
+.events-page .list-body h3 { font-size: 16.5px; color: var(--indigo); margin-bottom: 4px; }
+.events-page .list-body .lt { font-size: 13.5px; font-weight: 600; margin-bottom: 2px; }
+.events-page .list-body .ll { font-size: 13px; color: #666; }
+.events-page .empty-note { text-align: center; padding: 40px 20px; color: #8a8580; font-size: 14.5px; }
+
+/* Dropdown & Notes */
+.events-page .subscribe-wrap { position: relative; }
+.events-page .subscribe-menu { display: none; position: absolute; right: 0; top: calc(100% + 8px); background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 10px 24px rgba(0,0,0,.12); min-width: 210px; overflow: hidden; z-index: 20; }
+.events-page .subscribe-menu.open { display: block; }
+.events-page .subscribe-menu a { display: block; padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--charcoal); }
+.events-page .subscribe-menu a:hover { background: var(--cream-deep); color: var(--red); }
+.events-page .config-note { background: var(--cream-deep); border: 1px dashed var(--red); border-radius: 8px; padding: 16px 20px; font-size: 13.5px; margin-top: 24px; color: #4a453f; }
+.events-page .config-note code { background: #fff; padding: 1px 6px; border-radius: 3px; font-size: 12.5px; }
+
+@media (max-width: 640px) {
+  .events-page .cal-cell { min-height: 70px; }
+  .events-page .cal-daynum { font-size: 11px; }
+  .events-page .cal-event { font-size: 9.5px; padding: 2px 4px; }
+  .events-page .month-nav .month-label { font-size: 20px; }
+}

@@ -1,0 +1,65 @@
+/* src/pages/About.css */
+
+/* Prefix the layout rules with .about-page so they don't leak! */
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+/* Main Content & Text */
+.about-page main { padding: 56px 0 10px; }
+.about-page .content-wrap { max-width: 900px; margin: 0 auto; padding: 0 28px; }
+.about-page .content-wrap h2 { font-size: clamp(24px, 3vw, 32px); color: var(--indigo); margin-bottom: 22px; }
+.about-page .content-wrap p { font-size: 15.5px; margin-bottom: 16px; color: #3a3733; }
+.about-page .content-wrap a.inline-link { color: var(--red); font-weight: 600; border-bottom: 1px solid var(--red-light); }
+.about-page .content-wrap a.inline-link:hover { color: var(--indigo); border-color: var(--indigo); }
+.about-page .team-subtitle { color: var(--charcoal); font-size: 18px; margin-bottom: 10px; }
+
+/* Section Divider */
+.about-page .section-divider { 
+  max-width: 900px; 
+  margin: 32px auto; 
+  padding: 0 28px; 
+  display: flex; 
+}
+
+.about-page .section-divider .rule { 
+  flex: 1;
+  height: 33px;
+  align-self: flex-end;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='44' viewBox='0 0 160 44'%3E%3Cg%3E%3Cellipse cx='20' cy='16' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M20 16 L30 12 L30 20 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='60' cy='36' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M60 36 L70 32 L70 40 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='100' cy='6' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M100 6 L110 2 L110 10 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='140' cy='26' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M140 26 L150 22 L150 30 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 120px 33px;
+}
+
+/* Carousel */
+.about-page .carousel { position: relative; max-width: 900px; margin: 34px auto 26px; padding: 0 28px; }
+.about-page .carousel-track-wrap { overflow: hidden; border-radius: 8px; }
+.about-page .carousel-track { display: flex; transition: transform .4s ease; }
+.about-page .carousel-slide { flex: 0 0 100%; height: 320px; position: relative; display: flex; align-items: flex-end; padding: 22px 26px; color: #fff; }
+.about-page .carousel-slide .cap { background: rgba(17,34,63,.72); padding: 9px 16px; border-radius: var(--radius); font-size: 14px; font-weight: 600; }
+.about-page .slide1 { background: linear-gradient(135deg, var(--indigo-deep), var(--indigo) 55%, var(--red) 150%); }
+.about-page .slide2 { background: linear-gradient(135deg, var(--green), #3f5a3f 60%, var(--gold) 160%); }
+.about-page .slide3 { background: linear-gradient(135deg, var(--red), var(--red-light) 55%, var(--indigo) 160%); }
+.about-page .carousel-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; background: #fff; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 18px; color: var(--indigo); font-weight: 700; box-shadow: 0 4px 10px rgba(0,0,0,.12); }
+.about-page .carousel-arrow:hover { background: var(--red); color: #fff; }
+.about-page .carousel-arrow.prev { left: 2px; }
+.about-page .carousel-arrow.next { right: 2px; }
+.about-page .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 16px; }
+.about-page .carousel-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--line); cursor: pointer; }
+.about-page .carousel-dots span.active { background: var(--red); }
+
+/* Team Section */
+.about-page .team-note { background: var(--cream-deep); border: 1px solid var(--line); border-radius: 8px; padding: 20px 24px; margin-bottom: 30px; font-size: 14.5px; }
+.about-page .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.about-page .team-grid h3 { font-size: 18px; color: var(--indigo); margin-bottom: 14px; }
+.about-page .team-grid ul { list-style: none; margin-bottom: 26px; }
+.about-page .team-grid li { font-size: 14.5px; padding: 7px 0 7px 18px; position: relative; color: #3a3733; }
+.about-page .team-grid li::before { content: ""; position: absolute; left: 0; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--red); }
+.about-page .team-grid li a { color: var(--indigo); font-weight: 600; }
+.about-page .team-grid li a:hover { color: var(--red); }
+
+@media (max-width: 640px) {
+  .about-page .team-grid { grid-template-columns: 1fr; gap: 10px; }
+  .about-page .carousel-slide { height: 230px; }
+}
+
+#club, #team { scroll-margin-top: 140px; }

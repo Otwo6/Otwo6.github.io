@@ -1,0 +1,80 @@
+/* src/pages/OurMeetings.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+/* Info Grid */
+.meetings-page .info-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+  margin: 60px auto 80px;
+  max-width: 980px;
+  padding: 0 28px;
+}
+
+.meetings-page .info-card {
+  background: var(--cream-deep);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 42px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meetings-page .info-card h2 {
+  font-size: 24px;
+  color: var(--indigo);
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.meetings-page .info-card p {
+  font-size: 16px;
+  opacity: 0.92;
+  flex: 1;
+}
+
+.meetings-page .info-card strong {
+  color: var(--charcoal);
+}
+
+.meetings-page .info-card a:not(.btn) {
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.meetings-page .info-card a:not(.btn):hover {
+  color: var(--indigo);
+}
+
+/* Buttons */
+.meetings-page .btn {
+  display: inline-block; 
+  padding: 14px 26px; 
+  border-radius: var(--radius);
+  background: var(--red); 
+  color: #fff; 
+  font-weight: 700; 
+  font-size: 14.5px;
+  letter-spacing: .02em; 
+  border: none; 
+  cursor: pointer; 
+  text-align: center;
+  transition: background .15s ease, transform .15s ease;
+  align-self: flex-start;
+}
+
+.meetings-page .btn:hover {
+  background: var(--red-light); 
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .meetings-page .info-content {
+    grid-template-columns: 1fr;
+  }
+}

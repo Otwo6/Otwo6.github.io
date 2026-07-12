@@ -1,0 +1,108 @@
+/* src/pages/Directory.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+.directory-page main { padding-bottom: 80px; }
+
+.directory-page .intro-text {
+  max-width: 900px;
+  margin: 50px auto 30px;
+  padding: 0 28px;
+  font-size: 15.5px;
+  color: #3a3733;
+  text-align: center;
+}
+
+/* Accordion Styles (Matches Contact Page) */
+.directory-page .accordion-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.directory-page .accordion {
+  border: 1px solid var(--indigo);
+  background: var(--cream-deep);
+}
+.directory-page .accordion-item {
+  border-bottom: 1px solid #fff;
+}
+.directory-page .accordion-item:last-child {
+  border-bottom: none;
+}
+.directory-page .accordion-header {
+  width: 100%;
+  background: var(--indigo);
+  color: #fff;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.directory-page .accordion-header:hover {
+  background: var(--indigo-deep);
+}
+.directory-page .accordion-header.active {
+  color: var(--gold);
+}
+.directory-page .accordion-header .icon {
+  font-size: 20px;
+  font-weight: 700;
+  width: 16px;
+  display: inline-block;
+  text-align: center;
+}
+
+.directory-page .accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+  background: var(--cream-deep);
+}
+/* Increased max-height for deeply nested content */
+.directory-page .accordion-content.open {
+  max-height: 2500px; 
+}
+.directory-page .accordion-body {
+  padding: 24px;
+  border-left: 1px solid var(--indigo);
+  border-right: 1px solid var(--indigo);
+  border-bottom: 1px solid var(--indigo);
+  background: var(--cream-deep);
+}
+
+/* Inner Accordion Tweaks (Optional: makes nested accordions stand out) */
+.directory-page .accordion-body .accordion {
+  margin-top: 10px;
+}
+
+/* Inner Content Grids (From original Directory) */
+.directory-page .flat-body { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.directory-page .flat-body h6, .directory-page .flat-body h5 {
+  font-size: 13px; text-transform: uppercase; 
+  letter-spacing: .06em; color: var(--red); margin-bottom: 10px; font-weight: 700;
+}
+.directory-page .flat-body p { font-size: 14px; margin-bottom: 14px; color: #3a3733; }
+.directory-page .flat-body a { color: var(--indigo); font-weight: 600; }
+.directory-page .flat-body a:hover { color: var(--red); }
+.directory-page .flat-body .star { color: var(--red); }
+
+/* Tabs */
+.directory-page .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 18px; }
+.directory-page .tab-btn {
+  background: var(--cream-deep); border: 1px solid var(--line); border-radius: 999px; 
+  padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; color: var(--charcoal);
+  transition: background 0.2s, color 0.2s;
+}
+.directory-page .tab-btn.active { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+.directory-page .tab-panel { display: none; }
+.directory-page .tab-panel.active { display: block; }
+
+@media (max-width: 760px) {
+  .directory-page .flat-body { grid-template-columns: 1fr; gap: 16px; }
+}

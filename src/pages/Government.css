@@ -1,0 +1,80 @@
+/* src/pages/Government.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+.government-page main { padding-bottom: 80px; }
+.government-page .content-wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+/* Accordion Styles */
+.government-page .accordion { border: 1px solid var(--indigo); background: var(--cream-deep); margin-bottom: 20px; }
+.government-page .accordion-item { border-bottom: 1px solid #fff; }
+.government-page .accordion-item:last-child { border-bottom: none; }
+.government-page .accordion-header {
+  width: 100%; background: var(--indigo); color: #fff; padding: 16px 20px;
+  font-size: 16px; font-weight: 600;
+  text-align: left; border: none; cursor: pointer; display: flex; align-items: center; gap: 12px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.government-page .accordion-header:hover { background: var(--indigo-deep); }
+.government-page .accordion-header.active { color: var(--gold); }
+.government-page .accordion-header .icon {
+  font-size: 20px; font-weight: 700; width: 16px; display: inline-block; text-align: center;
+}
+
+.government-page .accordion-content {
+  max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out; background: var(--cream-deep);
+}
+.government-page .accordion-content.open { max-height: 2500px; }
+.government-page .accordion-body {
+  padding: 24px; border-left: 1px solid var(--indigo); border-right: 1px solid var(--indigo);
+  border-bottom: 1px solid var(--indigo); background: var(--cream-deep);
+}
+
+/* Nested Accordion Tweaks */
+.government-page .accordion-body .accordion { margin-top: 10px; margin-bottom: 0; }
+.government-page .accordion-body .accordion-header { background: #fff; color: var(--indigo); border-bottom: 1px solid var(--line); }
+.government-page .accordion-body .accordion-header:hover { background: #f9f9f9; }
+.government-page .accordion-body .accordion-header.active { color: var(--red); }
+
+/* Flat Grids & Typography */
+.government-page .flat-body { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+.government-page .flat-body h6 {
+  font-size: 13px; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--red); margin-bottom: 10px; font-weight: 700;
+}
+.government-page .flat-body p { font-size: 14px; margin-bottom: 12px; color: #3a3733; }
+.government-page .flat-body a { color: var(--indigo); font-weight: 600; }
+.government-page .flat-body a:hover { color: var(--red); }
+.government-page .find-link {
+  display: inline-block; margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--red);
+  border-bottom: 1px solid var(--red-light);
+}
+.government-page .flat-body ul { list-style: none; margin-bottom: 6px; }
+.government-page .flat-body li { font-size: 14px; padding: 5px 0 5px 16px; position: relative; color: #3a3733; }
+.government-page .flat-body li::before {
+  content: ""; position: absolute; left: 0; top: 12px; width: 5px; height: 5px; border-radius: 50%; background: var(--green);
+}
+
+/* Call Block & Disclaimer */
+.government-page .call-block { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 26px 28px; margin-top: 6px; }
+.government-page .call-block h6 { font-size: 17px; color: var(--indigo); margin-bottom: 10px; }
+.government-page .call-block p { font-size: 14.5px; margin-bottom: 16px; color: #3a3733; }
+.government-page .btn {
+  display: inline-block; padding: 12px 22px; border-radius: var(--radius);
+  background: var(--red); color: #fff; font-weight: 700; font-size: 14px; letter-spacing: .02em; border: none; cursor: pointer;
+}
+.government-page .btn:hover { background: var(--red-light); }
+.government-page .disclaimer { font-size: 12.5px; color: #807a70; margin-top: 8px; font-style: italic; }
+
+@media (max-width: 760px) {
+  .government-page .flat-body { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.intro-text {
+  max-width: 900px;
+  margin: 50px auto 30px;
+  padding: 0 28px;
+  font-size: 15.5px;
+  color: #3a3733;
+  text-align: center;
+}

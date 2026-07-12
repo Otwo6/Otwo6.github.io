@@ -1,0 +1,51 @@
+/* src/pages/PoliticalAction.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+.political-action-page main { padding: 44px 0 80px; }
+.political-action-page .content-wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+.political-action-page .content-wrap p { font-size: 15.5px; color: #3a3733; }
+.political-action-page .content-wrap a.inline-link { color: var(--red); font-weight: 600; border-bottom: 1px solid var(--red-light); }
+.political-action-page .content-wrap a.inline-link:hover { color: var(--indigo); border-color: var(--indigo); }
+
+.political-action-page .section-divider { 
+  max-width: 980px; 
+  margin: 34px auto; 
+  padding: 0 28px; 
+  display: flex; 
+}
+
+.political-action-page .section-divider .rule { 
+  flex: 1;
+  height: 33px;
+  align-self: flex-end;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='44' viewBox='0 0 160 44'%3E%3Cg%3E%3Cellipse cx='20' cy='16' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M20 16 L30 12 L30 20 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='60' cy='36' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M60 36 L70 32 L70 40 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='100' cy='6' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M100 6 L110 2 L110 10 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='140' cy='26' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M140 26 L150 22 L150 30 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 120px 33px;
+}
+
+/* Document Embed & Fallback Layout */
+.political-action-page .doc-embed {
+  position: relative; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  background: #fff; box-shadow: 0 6px 18px rgba(17,34,63,.06);
+}
+.political-action-page .doc-embed iframe { 
+  position: relative; z-index: 2; width: 100%; height: 1000px; border: none; display: block; 
+}
+.political-action-page .doc-fallback {
+  position: absolute; top: 0; left: 0; right: 0; z-index: 1;
+  padding: 60px 40px; text-align: center; color: #6a655c;
+}
+.political-action-page .doc-fallback h3 { color: var(--indigo); margin-bottom: 10px; font-size: 19px; }
+.political-action-page .doc-fallback p { font-size: 14.5px; max-width: 480px; margin: 0 auto; }
+
+.political-action-page .embed-note {
+  background: var(--cream-deep); border: 1px dashed var(--red); border-radius: 8px;
+  padding: 16px 20px; font-size: 13.5px; margin-top: 24px; color: #4a453f;
+}
+.political-action-page .embed-note code { background: #fff; padding: 1px 6px; border-radius: 3px; font-size: 12.5px; }
+
+@media (max-width: 640px) {
+  .political-action-page .doc-embed iframe { height: 700px; }
+}

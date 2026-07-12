@@ -1,0 +1,65 @@
+/* src/pages/Membership.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+.membership-page main { padding: 52px 0 20px; }
+.membership-page .content-wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+/* Intro & Two Columns */
+.membership-page .intro-line { font-size: clamp(19px, 2.4vw, 25px); color: var(--indigo); margin-bottom: 34px; font-weight: 600; }
+.membership-page .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-bottom: 10px; }
+.membership-page .two-col h3 { font-size: 17px; color: var(--charcoal); margin-bottom: 14px; }
+.membership-page .two-col ul { list-style: none; margin-bottom: 14px; }
+.membership-page .two-col li { font-size: 14.5px; padding: 7px 0 7px 18px; position: relative; color: #3a3733; }
+.membership-page .two-col li::before { content: ""; position: absolute; left: 0; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+.membership-page .two-col p.callout { font-weight: 600; font-size: 15px; margin-top: 6px; }
+
+/* Scoped Buttons */
+.membership-page .btn { background: var(--indigo); color: #fff; }
+.membership-page .btn:hover { background: var(--indigo-deep); transform: translateY(-1px); }
+.membership-page .btn.red { background: var(--red); color: #fff; }
+.membership-page .btn.red:hover { background: var(--red-light); }
+
+/* Dividers & Headings */
+.membership-page .section-divider { max-width: 980px; margin: 48px auto; padding: 0 28px; }
+.membership-page .section-divider .rule { height: 2px; background: repeating-linear-gradient(90deg, var(--gold) 0 10px, transparent 10px 16px); }
+.membership-page .section-head { font-size: clamp(22px, 2.8vw, 28px); color: var(--indigo); margin-bottom: 22px; }
+
+/* Renew Block */
+.membership-page .renew-row { display: flex; align-items: flex-start; gap: 26px; flex-wrap: wrap; }
+.membership-page .renew-row > p { flex-basis: 100%; font-size: 14.5px; color: #3a3733; margin-bottom: 6px; }
+.membership-page .renew-options { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; width: 100%; }
+.membership-page .renew-card { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 26px 26px 24px; display: flex; flex-direction: column; gap: 12px; }
+.membership-page .renew-card h4 { font-size: 16.5px; color: var(--indigo); }
+.membership-page .renew-card p { font-size: 14px; color: #3a3733; flex: 1; }
+.membership-page .renew-card .btn { align-self: flex-start; }
+
+/* Dues Panel */
+.membership-page .dues-panel { background: var(--cream-deep); border-radius: 8px; padding: 32px 34px; margin-bottom: 34px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.membership-page .dues-panel h4 { font-size: 16.5px; color: var(--charcoal); margin-bottom: 14px; }
+.membership-page .dues-panel ul { list-style: none; margin-bottom: 14px; }
+.membership-page .dues-panel li { font-size: 14.5px; padding: 7px 0 7px 18px; position: relative; color: #3a3733; }
+.membership-page .dues-panel li::before { content: ""; position: absolute; left: 0; top: 15px; width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.membership-page .dues-panel .fine-print { font-size: 13.5px; color: #5a554d; grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 16px; margin-top: 6px; }
+
+/* Ready Row */
+.membership-page .ready-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: 20px; }
+.membership-page .ready-col { flex: 1; min-width: 260px; }
+.membership-page .ready-col h4 { font-size: 16.5px; margin-bottom: 10px; }
+.membership-page .ready-col ol { list-style: none; }
+.membership-page .ready-col li { font-size: 14.5px; margin-bottom: 10px; color: #3a3733; }
+.membership-page .ready-col li b { color: var(--gold); }
+
+/* Questions Line */
+.membership-page .questions-line { font-size: 14px; color: #3a3733; margin-top: 8px; }
+.membership-page .questions-line a { color: var(--indigo); font-weight: 600; border-bottom: 1px solid var(--gold); }
+.membership-page .questions-line a:hover { color: var(--gold); }
+
+.membership-page #renew, .membership-page #join { scroll-margin-top: 140px; }
+
+@media (max-width: 760px) {
+  .membership-page .two-col { grid-template-columns: 1fr; gap: 24px; }
+  .membership-page .dues-panel { grid-template-columns: 1fr; gap: 20px; }
+  .membership-page .renew-options { grid-template-columns: 1fr; }
+  .membership-page .ready-row { flex-direction: column; align-items: flex-start; }
+}

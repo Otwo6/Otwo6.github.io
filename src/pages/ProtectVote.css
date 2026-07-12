@@ -1,0 +1,125 @@
+/* src/pages/ProtectVote.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+/* Main Content Area */
+.protect-vote-page .content-wrap {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* Alert Box */
+.protect-vote-page .alert-box {
+  background: #fff;
+  border: 3px solid var(--red);
+  padding: 32px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(200, 32, 44, 0.15);
+}
+.protect-vote-page .alert-box h2 {
+  font-size: 1.4rem;
+  color: var(--charcoal);
+  margin-bottom: 12px;
+}
+.protect-vote-page .alert-box a {
+  color: var(--red);
+  font-size: 2.2rem;
+  font-weight: 700;
+  display: block;
+}
+.protect-vote-page .alert-box a:hover {
+  color: var(--indigo);
+}
+
+/* Text Sections */
+.protect-vote-page .text-section h2 {
+  font-size: 28px;
+  color: var(--indigo);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+.protect-vote-page .text-section p, 
+.protect-vote-page .text-section li {
+  font-size: 16px;
+  color: var(--charcoal);
+}
+.protect-vote-page .text-section ul, 
+.protect-vote-page .text-section ol {
+  margin-left: 24px;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.protect-vote-page .text-section a {
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Card Grids */
+.protect-vote-page .grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 24px;
+}
+.protect-vote-page .card {
+  background: #fff;
+  padding: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+}
+.protect-vote-page .card h3 {
+  color: var(--indigo);
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 8px;
+  font-size: 20px;
+}
+.protect-vote-page .card.do-card h3 { border-color: var(--green); color: var(--green); }
+.protect-vote-page .card.dont-card h3 { border-color: var(--red); color: var(--red); }
+
+/* Buttons */
+.protect-vote-page .btn {
+  display: inline-block; padding: 16px 32px; border-radius: var(--radius);
+  background: var(--indigo); color: #fff !important; font-weight: 700; font-size: 16px;
+  letter-spacing: .02em; border: none; cursor: pointer; text-align: center;
+  transition: background .15s ease, transform .15s ease;
+  text-decoration: none !important;
+}
+.protect-vote-page .btn:hover { background: var(--red); transform: translateY(-2px); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .protect-vote-page .grid-2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .protect-vote-page .alert-box a { font-size: 1.6rem; }
+}
+
+/* Section Divider (Horseprints) */
+.protect-vote-page .section-divider { 
+  width: 100%;
+  max-width: 900px; 
+  margin: 32px auto; 
+  padding: 0 28px; 
+  display: flex; 
+}
+.protect-vote-page .section-divider .rule { 
+  flex: 1;
+  height: 33px;
+  align-self: flex-end;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='44' viewBox='0 0 160 44'%3E%3Cg%3E%3Cellipse cx='20' cy='16' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M20 16 L30 12 L30 20 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='60' cy='36' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M60 36 L70 32 L70 40 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='100' cy='6' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M100 6 L110 2 L110 10 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='140' cy='26' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M140 26 L150 22 L150 30 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-size: 120px 33px;
+}

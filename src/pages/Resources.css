@@ -1,0 +1,28 @@
+/* src/pages/Resources.css */
+
+/* Page hero banner now uses the shared .page-hero system in App.css */
+
+.resources-page main { max-width: 1180px; margin: 0 auto; padding: 52px 28px 80px; }
+
+/* Resource Grid */
+.resources-page .resource-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.resources-page .resource-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  padding: 34px 28px 30px; text-align: center; display: flex; flex-direction: column; align-items: center;
+  transition: box-shadow .2s ease, transform .2s ease, border-color .2s ease;
+  cursor: pointer; /* Add pointer just in case a div acts as a link */
+}
+.resources-page .resource-card:hover { box-shadow: 0 14px 30px rgba(17,34,63,.10); transform: translateY(-3px); border-color: var(--red-light); }
+.resources-page .resource-icon { width: 88px; height: 88px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; }
+.resources-page .resource-card h3 { font-size: 19px; color: var(--indigo); margin-bottom: 10px; }
+.resources-page .resource-card p { font-size: 14px; color: #4a453f; flex: 1; }
+.resources-page .resource-card .card-link { margin-top: 16px; font-size: 13px; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; color: var(--red); }
+.resources-page .resource-card:hover .card-link { color: var(--indigo); }
+
+/* Responsive */
+@media (max-width: 1000px) and (min-width: 641px) {
+  .resources-page .resource-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .resources-page .resource-grid { grid-template-columns: 1fr; }
+}

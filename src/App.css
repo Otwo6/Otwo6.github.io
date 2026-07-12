@@ -1,0 +1,397 @@
+:root{
+    --indigo: #1D3461;
+    --indigo-deep: #0F1B3B;
+    --red: #C8202C;
+    --red-light: #E2444C;
+    --cream: #FFFFFF;
+    --cream-deep: #F2EBDA;
+    --charcoal: #1E1B17;
+    --green: #3F7A3D;
+    --gold: #E3A83B;
+    --line: rgba(33,31,28,0.12);
+    --radius: 4px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins', sans-serif;
+    color:var(--charcoal);
+    background:var(--cream);
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{
+    font-family:'Poppins', sans-serif;
+    font-weight:600;
+    line-height:1.1;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{padding:0 28px;}
+
+  /* ---------- Top social strip (scrolls away, not part of sticky header) ---------- */
+  .social-strip{
+    background:var(--indigo-deep);
+    padding:9px 28px;
+  }
+  .social-strip .wrap{display:flex; justify-content:flex-end; gap:10px;}
+  .social-strip a{
+    width:30px; height:30px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.35);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:700; color:#fff;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .social-strip a:hover{background:var(--red); border-color:var(--red);}
+
+  /* ---------- Header (sticky) ---------- */
+  header{
+    background:var(--indigo);
+    color:#fff;
+    position:sticky; top:0; z-index:50;
+    border-bottom:3px solid var(--red);
+  }
+  .header-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 28px;
+    margin:0 auto;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .brand{display:flex; align-items:center; gap:16px;}
+  .brand-mark{
+    width:72px; height:72px; border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold), var(--red) 60%, var(--indigo-deep) 100%);
+    display:flex; align-items:center; justify-content:center;
+    
+    flex-shrink:0;
+    overflow:hidden;
+  }
+  .brand-mark img{
+    width:100%; height:100%; object-fit:cover; border-radius:50%;
+  }
+  .brand-name{
+    font-family:'Poppins', sans-serif; font-weight:600; font-size:1.6875rem; line-height:1.2;
+  }
+  .brand-name small{
+    display:block; font-family:'Poppins', sans-serif; font-weight:500;
+    font-size:12.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--gold); margin-top:3px;
+  }
+  nav.main-nav{display:flex; gap:34px;}
+  nav.main-nav a, .dropdown-toggle {
+    font-size:16px; font-weight:600; letter-spacing:.01em;
+    padding:6px 2px; border-bottom:2px solid transparent;
+    transition:border-color .15s ease, opacity .15s ease;
+    white-space:nowrap;
+  }
+  nav.main-nav a:hover, nav.main-nav a.active, .dropdown-toggle:hover {border-bottom-color:var(--red);}
+  .menu-toggle{display:none; background:none; border:none; color:#fff; font-size:26px; cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+.hero {
+    position: relative;
+    background:
+      /* 1. Top Layer: Dark blue gradient overlay */
+      linear-gradient(120deg, rgba(17,34,63,.88), rgba(27,58,107,.78)),
+      /* 2. Middle Layer: Striped pattern */
+      repeating-linear-gradient(135deg, rgba(242,166,70,0.10) 0 18px, transparent 18px 36px),
+      /* 3. Bottom Layer: Your Image and fallback color */
+      url('/DCNCBanner.png') var(--indigo);
+    
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;    
+    color: #fff;
+    padding: 74px 28px 64px;
+    overflow: hidden;
+    text-align: center;
+  }
+  .hero::before, .hero::after{
+    content:"";
+    position:absolute; bottom:-40px;
+    width:260px; height:260px; border-radius:50%;
+    background:radial-gradient(circle, rgba(242,201,76,.18), transparent 70%);
+  }
+  .hero::before{left:-80px;}
+  .hero::after{right:-80px;}
+  .hero-eyebrow{
+    font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--red-light);
+    font-weight:600; margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(30px, 4.4vw, 48px);
+    max-width:760px; margin:0 auto 26px;
+    position:relative; z-index:1;
+  }
+  .btn{
+    display:inline-block; padding:14px 26px; border-radius:var(--radius);
+    background:var(--red); color:#fff; font-weight:700; font-size:14.5px;
+    letter-spacing:.02em; border:none; cursor:pointer;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .btn:hover{background:var(--red-light); transform:translateY(-1px);}
+  .btn.outline{
+    background:transparent; border:2px solid #fff; color:#fff;
+  }
+  .btn.outline:hover{background:#fff; color:var(--indigo);}
+  .hero-note{font-size:12.5px; color:rgba(255,255,255,.6); position:relative; z-index:1;}
+
+  /* ---------- Unified inner-page hero banner ---------- */
+  .page-hero{
+    margin:0;
+    border-bottom:4px solid var(--red);
+  }
+  .page-hero-body{
+    position:relative;
+    padding:64px 28px;
+    text-align:center;
+    color:#fff;
+    background:
+      linear-gradient(120deg, rgba(17,34,63,.88), rgba(27,58,107,.78)),
+      repeating-linear-gradient(135deg, rgba(242,166,70,0.10) 0 18px, transparent 18px 36px),
+      url('/CoronaCA.jpg') var(--indigo);
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    overflow:hidden;
+  }
+  .page-hero-body .wrap{ position:relative; z-index:1; }
+  .page-hero-eyebrow{
+    font-size:12.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--red-light);
+    font-weight:600; margin-bottom:14px;
+  }
+  .page-hero h1{
+    color:#fff;
+    font-size:clamp(28px,4vw,44px);
+    max-width:820px;
+    margin:0 auto;
+  }
+  .page-hero-body p{
+    margin:14px auto 0;
+    font-size:15px;
+    max-width:720px;
+    color:rgba(255,255,255,.85);
+  }
+  @media (max-width:640px){
+    .page-hero-body{ padding:40px 22px; }
+  }
+
+  /* ---------- Three card section ---------- */
+  .pillars{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+    margin:54px auto; width:100%;
+  }
+  .pillar{
+    padding:44px 36px 38px;
+    color:#fff;
+    display:flex; flex-direction:column; gap:16px;
+    min-height:300px;
+    border-radius:6px;
+  }
+  .pillar h2{font-size:24px; text-transform:uppercase; letter-spacing:.01em;}
+  .pillar p{font-size:14.5px; opacity:.92; flex:1;}
+  .pillar.about{background:var(--indigo);}
+  .pillar.donate{background:var(--green);}
+  .pillar.join{background:var(--indigo-deep);}
+  .pillar .btn{align-self:flex-start; background:var(--gold); color:var(--charcoal);}
+  .pillar .btn:hover{background:#fff;}
+
+  /* ---------- Section heading ---------- */
+  .section-head{
+    display:flex; align-items:center; gap:18px; margin-bottom:34px;
+  }
+  .section-head h2{
+    font-size:clamp(24px,3vw,32px); color:var(--indigo); white-space:nowrap;
+  }
+  .section-head .rule {
+    flex: 1;
+    height: 33px;
+    align-self: flex-end;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='44' viewBox='0 0 160 44'%3E%3Cg%3E%3Cellipse cx='20' cy='16' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M20 16 L30 12 L30 20 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='60' cy='36' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M60 36 L70 32 L70 40 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='100' cy='6' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M100 6 L110 2 L110 10 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3Cg%3E%3Cellipse cx='140' cy='26' rx='9' ry='6' fill='%23C8202C'/%3E%3Cpath d='M140 26 L150 22 L150 30 Z' fill='%23FFFFFF' fill-opacity='0.85'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    background-size: 120px 33px;
+  }
+
+  /* ---------- Events ---------- */
+  .events-section{
+    background:var(--cream-deep);
+    border-radius:8px;
+    border:1px solid var(--line);
+    padding:42px 36px 50px;
+    margin:0 0 70px;
+  }
+  .events-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:30px 36px;
+    margin-bottom:34px;
+  }
+  .event-card h3{font-size:17px; color:var(--indigo); margin-bottom:8px;}
+  .event-time{font-weight:600; font-size:14px; margin-bottom:4px;}
+  .event-loc{font-size:13.5px; color:#555; margin-bottom:12px;}
+  .event-card a.details{
+    font-size:12.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    color:#fff; background:var(--indigo); padding:9px 16px; border-radius:var(--radius);
+    display:inline-block;
+  }
+  .event-card a.details:hover{background:var(--red);}
+  .center{text-align:center;}
+
+  /* ---------- Divider motif ---------- */
+  .grove-divider{
+    display:flex; justify-content:center; gap:14px; padding:44px 0;
+  }
+  .grove-divider span{
+    width:9px; height:9px; border-radius:50%; background:var(--red); opacity:.55;
+  }
+  .grove-divider span:nth-child(odd){background:var(--green);}
+  .grove-divider span:nth-child(3n){background:var(--gold); opacity:.9;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--charcoal); color:#fff; padding:36px 28px 24px;
+  }
+  .footer-grid{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:24px;
+    margin-bottom:22px; flex-wrap:wrap;
+  }
+  .footer-links a{
+    display:block; font-size:14px; color:rgba(255,255,255,.78); padding:5px 0;
+  }
+  .footer-links a:hover{color:var(--gold);}
+  .footer-center{display:flex; flex-direction:column; align-items:center; gap:14px; flex:1;}
+  .footer-social{display:flex; gap:10px; flex-wrap:wrap; justify-content:center;}
+  .footer-social a{
+    width: 48px;  /* Increased from 34px */
+    height: 48px; /* Increased from 34px */
+    border-radius: 50%; 
+    border: 1px solid rgba(255,255,255,.25);
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 11px; 
+    font-weight: 700;
+  }
+  .footer-social a:hover{background:var(--red); border-color:var(--red);}
+  .footer-legal{text-align:center; font-size:12.5px; color:rgba(255,255,255,.55); display:flex; flex-direction:column; gap:4px;}
+  .footer-address{font-size:13.5px; color:rgba(255,255,255,.78); line-height:1.6; text-align:right;}
+
+  /* ---------- Mid breakpoint: nav wraps to two rows instead of hamburger ---------- */
+  @media (max-width:1000px) and (min-width:641px){
+    nav.main-nav{
+      flex-wrap:wrap;
+      justify-content:center;
+      row-gap:12px;
+      column-gap:28px;
+      flex-basis:100%;
+      order:3;
+    }
+    .header-inner{justify-content:center; text-align:center;}
+  }
+
+  /* ---------- Small screens: hamburger slide-out ---------- */
+  @media (max-width:640px){
+    nav.main-nav{
+      position:fixed; top:0; right:0; height:100vh; width:240px;
+      background:var(--indigo-deep); flex-direction:column; gap:0;
+      padding:80px 24px; transform:translateX(100%); transition:transform .25s ease;
+      flex-basis:auto; order:0;
+    }
+    nav.main-nav.open{transform:translateX(0);}
+    nav.main-nav a{padding:13px 0; border-bottom:1px solid rgba(255,255,255,.1) !important;}
+    .menu-toggle{display:block;}
+    .pillars{grid-template-columns:1fr;}
+    .events-grid{grid-template-columns:1fr;}
+    .footer-grid{flex-direction:column; align-items:center; text-align:center; gap:26px;}
+    .footer-address{text-align:center;}
+  }
+
+  .footer-social a {
+    border: 1px solid #ccc; /* Or a background color */
+    border-radius: 50%;     /* This creates the circle */
+    padding: 10px;
+  }
+
+ /* --- Dropdown Base Styles --- */
+.nav-dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--cream);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  min-width: 160px;
+  z-index: 100;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.dropdown-menu.show {
+  display: flex;
+}
+
+/* Specific styling for the links INSIDE the dropdown */
+.dropdown-menu a {
+  padding: 12px 18px;
+  color: var(--indigo) !important;
+  border-bottom: none !important; /* Removes the red hover line for sub-items */
+  font-size: 14.5px;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--cream-deep);
+}
+
+/* --- Mobile Responsive Fixes --- */
+@media (max-width: 640px) {
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    background-color: transparent;
+    border: none;
+    padding-left: 20px;
+  }
+  
+  .dropdown-menu a {
+    color: #fff !important; /* Makes text white on the dark mobile menu */
+  }
+  
+  .dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+#hero { scroll-margin-top: 140px; }
+
+/* --- Dropdown Caret / Triangle --- */
+.dropdown-caret {
+  cursor: pointer;
+  padding: 5px 8px;
+  font-size: 20px; /* Slightly bigger than the 16px text */
+  color: #fff; /* Match header text color */
+  transition: color 0.15s ease, transform 0.15s ease;
+  user-select: none;
+}
+
+/* Turns red when the menu is open, or if you hover over the triangle itself */
+.dropdown-caret:hover,
+.dropdown-caret.open {
+  color: var(--red);
+}
+
+/* Optional: flips the triangle upside down when open! Remove this block if you just want it to change color */
+.dropdown-caret.open {
+  transform: rotate(180deg); 
+}
