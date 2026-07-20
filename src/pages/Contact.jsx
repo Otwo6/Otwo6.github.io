@@ -25,7 +25,7 @@ export default function Contact() {
       `(FOR THE ${formData.officer.toUpperCase()})\n\nName: ${formData.name}\nEmail: ${formData.email}\nTopic: ${formData.topic}\n\nMessage:\n${formData.message}`
     );
     
-    window.location.href = `mailto:Info@DemocratsofCoronaNorco.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:democratsofcoronanorco@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -96,7 +96,7 @@ export default function Contact() {
               <h3>General Information</h3>
               <ul>
                 <li>
-                  <strong>Club Email:</strong> <a href="mailto:Info@DemocratsofCoronaNorco.com">Info@DemocratsofCoronaNorco.com</a>
+                  <strong>Club Email:</strong> <a href="mailto:democratsofcoronanorco@gmail.com">DemocratsOfCoronaNorco@gmail.com</a>
                 </li>
               </ul>
 

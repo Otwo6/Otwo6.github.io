@@ -16,7 +16,7 @@ export default function PoliticalAction() {
         <div className="content-wrap">
           <p>
             For more information, contact our{' '}
-            <a href="mailto:politicalaction@democratsofcoronanorco.org" className="inline-link">
+            <a href="mailto:democratsofcoronanorco@gmail.com" className="inline-link">
               Political Action Committee
             </a>.
           </p>
