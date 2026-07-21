@@ -9,7 +9,6 @@ export default function Footer() {
       <div className="wrap footer-grid">
         <div className="footer-links">
           <Link to="/contact">Contact</Link>
-          <Link to="/membership">E-Board Login</Link>
         </div>
         <div className="footer-center">
           <div className="footer-social" style={{ display: 'flex', gap: '15px', justifyContent: 'center', alignItems: 'center' }}>

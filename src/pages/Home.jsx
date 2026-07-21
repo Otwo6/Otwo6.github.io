@@ -82,9 +82,15 @@ export default function Home() {
         <div className="wrap">
           <div className="hero-eyebrow">Corona &middot; Norco &middot; Inland Empire</div>
           <h1>From Circle City, to Horsetown, to Temescal Valley.</h1>
+          
+          <p style={{ fontSize: '1.75rem', margin: '0 0 20px 0', opacity: 0.9 }}>
+            We're building democratic power close to home.
+          </p>
+
           <div className="hero-logo-center">
             <img src="/DCNC.png" alt="Democrats of Corona Norco Logo" />
           </div>
+
           <div>
             <Link to="/membership" className="btn" style={{ fontSize: '16px', padding: '16px 38px' }}>
               Join Us
